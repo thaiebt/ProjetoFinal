@@ -8,7 +8,7 @@
 import Foundation
 
 struct ImageCat: Codable {
-    var url     : String?
+    var url: String?
     
     enum CodingKeys: String, CodingKey {
         case url

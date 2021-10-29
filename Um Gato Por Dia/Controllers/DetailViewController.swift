@@ -27,7 +27,7 @@ class DetailViewControler: UIViewController {
     
     private let reuseIdentifier = "cell"
     var touchedCat: Cat = Cat()
-    var favorite: Bool = false
+    var isFavorite: Bool = false
     
     
     
@@ -35,10 +35,14 @@ class DetailViewControler: UIViewController {
         super.viewDidLoad()
         
         self.view.addSubview(detailTableCat)
-    
+        
         //título da tabela:
         self.title = touchedCat.name
+        
+        verifyFavorite()
     }
+    
+
 }
 
 //MARK: Extensões
@@ -87,7 +91,7 @@ extension DetailViewControler: UITableViewDataSource {
             return setWikipedia_Url(cell: cell)
             
         case 7:
-            return self.setFavorites()
+            return self.showFavoriteButton()
             
         default:
             return UITableViewCell()
@@ -159,7 +163,7 @@ extension DetailViewControler: UITableViewDataSource {
         return cell
     }
     
-    func setFavorites() -> UITableViewCell {
+    func setCellAddFavorites() -> UITableViewCell {
        let cell = FavTableViewCell()
         
         cell.imageView?.image = UIImage(systemName: "heart.fill")
@@ -169,6 +173,18 @@ extension DetailViewControler: UITableViewDataSource {
         
         
         return cell
+    }
+    
+    func setCellRemoveFavorites() -> UITableViewCell {
+        let cell = FavTableViewCell()
+         
+         cell.imageView?.image = UIImage(systemName: "heart.slash.fill")
+         cell.imageView?.tintColor = .purple
+         
+         cell.textLabel?.text = "Remove to favorites"
+         
+         
+         return cell
     }
 
 }
@@ -188,10 +204,49 @@ extension DetailViewControler: UITableViewDelegate {
         print(indexPath.row)
         
         if indexPath.row == 7 {
-            addFavorites()
+            if isFavorite {
+                removeFavorite()
+            } else {
+                addFavorites()
+            }
         }
         
     }
+    
+    func showFavoriteButton() -> UITableViewCell {
+        
+            if isFavorite {
+                return self.setCellRemoveFavorites()
+            } else {
+                return self.setCellAddFavorites()
+            }
+    }
+    
+    func verifyFavorite() {
+        
+        let context = DataBaseController.persistentContainer.viewContext
+        
+        do {
+            
+            guard let catIdentifier = touchedCat.identifier else { return }
+            
+            let fetchRequest = CatEntity.fetchRequest()
+            
+            let predicate = NSPredicate(format: "catIdentifier == %@", catIdentifier)
+            fetchRequest.predicate = predicate
+            
+            let favoriteCat = try context.fetch(fetchRequest)
+            if favoriteCat.count > 0 {
+                isFavorite = true
+            } else {
+                isFavorite = false
+            }
+            
+        } catch {
+            print("Error")
+        }
+    }
+
     
     func addFavorites() {
         if let catDescription = touchedCat.description,
@@ -218,11 +273,56 @@ extension DetailViewControler: UITableViewDelegate {
             
             DataBaseController.saveContext()
             
+            isFavorite = true
+            
             self.detailTableCat.reloadData()
         }
     }
+    
+    func removeFavorite() {
+        guard let catIdentifier = touchedCat.identifier else { return }
+        
+        let fetchRequest = CatEntity.fetchRequest()
+        
+        let predicate = NSPredicate(format: "catIdentifier == %@", catIdentifier)
+        fetchRequest.predicate = predicate
+
+        fetchRequest.includesPropertyValues = false
+
+        let context = DataBaseController.persistentContainer.viewContext
+
+        if let objects = try? context.fetch(fetchRequest) {
+            
+        
+            for object in objects {
+                context.delete(object)
+            }
+        }
+        
+        try? context.save()
+        
+        isFavorite = false
+        
+        self.detailTableCat.reloadData()
+        
+    }
+    
+   
+//Função utilizada apenas para remover todos os itens da CatEntity em dev
+//    func removeAllFavorites() {
+//        // Create Fetch Request
+//        let context = DataBaseController.persistentContainer.viewContext
+//        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "CatEntity")
+//
+//        // Create Batch Delete Request
+//        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+//
+//        do {
+//            try context.execute(batchDeleteRequest)
+//
+//        } catch {
+//            // Error Handling
+//        }
+//    }
 
 }
-    
-
-

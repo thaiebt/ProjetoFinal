@@ -33,11 +33,17 @@ class FavoriteViewController: UIViewController {
         favoriteTableCat.register(nibFavCell, forCellReuseIdentifier: FavoriteTableViewCell.idCelulaFavTableView)
         
         self.title = "Favorites"
-        
-        reloadTableViewFavorites()
     }
     
-    func reloadTableViewFavorites() {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        reloadTableViewAddFavorites()
+    }
+    
+    //MARK: Métodos
+    
+    func reloadTableViewAddFavorites() {
         do {
             self.favoriteCat = try DataBaseController.persistentContainer.viewContext.fetch(CatEntity.fetchRequest())
         } catch {
@@ -45,6 +51,23 @@ class FavoriteViewController: UIViewController {
         }
         self.favoriteTableCat.reloadData()
     }
+    
+    func reloadTableViewRemoveFavorites() {
+        
+    }
+    
+//    func removeFavorites() {
+//        let context = DataBaseController.persistentContainer.viewContext
+//
+//        let fetchRequest = CatEntity.fetchRequest()
+//
+//        do {
+//            self.favoriteCat[] = try DataBaseController.persistentContainer.viewContext.fetch(fetchRequest)
+//        } catch {
+//            print("Não consegui trazer informações do banco de dados!")
+//        }
+//        self.favoriteTableCat.reloadData()
+//    }
 
 }
 
@@ -104,6 +127,6 @@ extension FavoriteViewController: UITableViewDelegate {
         
         detail.touchedCat = newTouchedCat
         
-        self.show(detail, sender: nil)
+        self.show(detail, sender: self)
     }
 }

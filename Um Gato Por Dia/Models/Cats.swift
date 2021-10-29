@@ -58,18 +58,18 @@ import Foundation
 
 
 struct Cat: Codable {
-    var description         : String?
-    var identifier          : String?
-    var image               : ImageCat?
-    var life_span           : String?
-    var name                : String?
-    var origin              : String?
-    var temperament         : String?
-    var wikipedia_url       : String?
+    var description: String?
+    var identifier: String?
+    var image: ImageCat?
+    var life_span: String?
+    var name: String?
+    var origin: String?
+    var temperament: String?
+    var wikipedia_url: String?
     
     enum CodingKeys: String, CodingKey {
         case description
-        case identifier  = "id"
+        case identifier = "id"
         case image
         case life_span
         case name
@@ -79,24 +79,24 @@ struct Cat: Codable {
         
     }
     
-    init(description    : String? = nil,
-        identifier      : String? = nil,
-        image           : ImageCat? = nil,
-        life_span       : String? = nil,
-        name            : String? = nil,
-        origin          : String? = nil,
-        temperament     : String? = nil,
-        wikipedia_url   : String? = nil
+    init(description: String? = nil,
+        identifier: String? = nil,
+        image: ImageCat? = nil,
+        life_span: String? = nil,
+        name: String? = nil,
+        origin: String? = nil,
+        temperament: String? = nil,
+        wikipedia_url: String? = nil
     
     ) {
-        self.description    = description
-        self.identifier     = identifier
-        self.image          = image
-        self.life_span      = life_span
-        self.name           = name
-        self.origin         = origin
-        self.temperament    = temperament
-        self.wikipedia_url  = wikipedia_url
+        self.description = description
+        self.identifier = identifier
+        self.image = image
+        self.life_span = life_span
+        self.name = name
+        self.origin = origin
+        self.temperament = temperament
+        self.wikipedia_url = wikipedia_url
     }    
     
 }
