@@ -1,0 +1,515 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		491D9C78272451B300E244BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 491D9C77272451B300E244BB /* LaunchScreen.storyboard */; };
+		491D9C812724536B00E244BB /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 491D9C802724536B00E244BB /* SnapKit */; };
+		491D9C842724538200E244BB /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 491D9C832724538200E244BB /* Kingfisher */; };
+		4920F0E02729E4740098C336 /* UmGatoPorDia.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4920F0DE2729E4740098C336 /* UmGatoPorDia.xcdatamodeld */; };
+		4920F0E22729EF950098C336 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4920F0E12729EF950098C336 /* FavoriteViewController.swift */; };
+		4920F0E42729F4D90098C336 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4920F0E32729F4D90098C336 /* APIError.swift */; };
+		49535C382726B98100692FEA /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49535C372726B98100692FEA /* DetailViewController.swift */; };
+		495A3ADE2728521800811B16 /* ImageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495A3ADD2728521800811B16 /* ImageViewCell.swift */; };
+		4968B1322721979A00629574 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4968B1312721979A00629574 /* AppDelegate.swift */; };
+		4968B1362721979A00629574 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4968B1352721979A00629574 /* ViewController.swift */; };
+		4968B13B2721979B00629574 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4968B13A2721979B00629574 /* Assets.xcassets */; };
+		4968B1482721CA6400629574 /* CelulaCatsCustomizadaCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4968B1462721CA6400629574 /* CelulaCatsCustomizadaCollectionViewCell.swift */; };
+		4968B1492721CA6400629574 /* CelulaCatsCustomizadaCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4968B1472721CA6400629574 /* CelulaCatsCustomizadaCollectionViewCell.xib */; };
+		4968B14B2721DBE100629574 /* Cats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4968B14A2721DBE100629574 /* Cats.swift */; };
+		4968B14D2721F1B200629574 /* ImageCat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4968B14C2721F1B200629574 /* ImageCat.swift */; };
+		4968B14F2721F21900629574 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4968B14E2721F21900629574 /* API.swift */; };
+		4968B1512721F42700629574 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4968B1502721F42700629574 /* HTTPMethod.swift */; };
+		4968B1532721FEE800629574 /* EndPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4968B1522721FEE800629574 /* EndPoints.swift */; };
+		49877A60272AC86700FD64B7 /* FavoriteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49877A5E272AC86700FD64B7 /* FavoriteTableViewCell.swift */; };
+		49877A61272AC86700FD64B7 /* FavoriteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49877A5F272AC86700FD64B7 /* FavoriteTableViewCell.xib */; };
+		49877A63272AD35900FD64B7 /* DataBaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49877A62272AD35900FD64B7 /* DataBaseController.swift */; };
+		49877AB4272B20F600FD64B7 /* FavTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49877AB2272B20F600FD64B7 /* FavTableViewCell.swift */; };
+		49877AB5272B20F600FD64B7 /* FavTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49877AB3272B20F600FD64B7 /* FavTableViewCell.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		491D9C77272451B300E244BB /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4920F0DF2729E4740098C336 /* UmGatoPorDia.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UmGatoPorDia.xcdatamodel; sourceTree = "<group>"; };
+		4920F0E12729EF950098C336 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
+		4920F0E32729F4D90098C336 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		49535C372726B98100692FEA /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		495A3ADD2728521800811B16 /* ImageViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewCell.swift; sourceTree = "<group>"; };
+		4968B12E2721979A00629574 /* Um Gato Por Dia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Um Gato Por Dia.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4968B1312721979A00629574 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		4968B1352721979A00629574 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4968B13A2721979B00629574 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4968B13F2721979B00629574 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4968B1462721CA6400629574 /* CelulaCatsCustomizadaCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CelulaCatsCustomizadaCollectionViewCell.swift; sourceTree = "<group>"; };
+		4968B1472721CA6400629574 /* CelulaCatsCustomizadaCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CelulaCatsCustomizadaCollectionViewCell.xib; sourceTree = "<group>"; };
+		4968B14A2721DBE100629574 /* Cats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cats.swift; sourceTree = "<group>"; };
+		4968B14C2721F1B200629574 /* ImageCat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCat.swift; sourceTree = "<group>"; };
+		4968B14E2721F21900629574 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		4968B1502721F42700629574 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		4968B1522721FEE800629574 /* EndPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoints.swift; sourceTree = "<group>"; };
+		49877A5E272AC86700FD64B7 /* FavoriteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewCell.swift; sourceTree = "<group>"; };
+		49877A5F272AC86700FD64B7 /* FavoriteTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteTableViewCell.xib; sourceTree = "<group>"; };
+		49877A62272AD35900FD64B7 /* DataBaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseController.swift; sourceTree = "<group>"; };
+		49877AB2272B20F600FD64B7 /* FavTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavTableViewCell.swift; sourceTree = "<group>"; };
+		49877AB3272B20F600FD64B7 /* FavTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavTableViewCell.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4968B12B2721979A00629574 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				491D9C842724538200E244BB /* Kingfisher in Frameworks */,
+				491D9C812724536B00E244BB /* SnapKit in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		491D9C762724517800E244BB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4968B14A2721DBE100629574 /* Cats.swift */,
+				4968B1522721FEE800629574 /* EndPoints.swift */,
+				4968B14E2721F21900629574 /* API.swift */,
+				4920F0E32729F4D90098C336 /* APIError.swift */,
+				4968B1502721F42700629574 /* HTTPMethod.swift */,
+				4968B14C2721F1B200629574 /* ImageCat.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		49535C392726C52F00692FEA /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4968B1352721979A00629574 /* ViewController.swift */,
+				49535C372726B98100692FEA /* DetailViewController.swift */,
+				4920F0E12729EF950098C336 /* FavoriteViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		49535C3A2726C53F00692FEA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				49877A5D272AC7B600FD64B7 /* CelulaCustomizadaViewFavoritos */,
+				4968B1452721BB6800629574 /* CelulaCustomizadaViewPrincipal */,
+				49877AB6272B488500FD64B7 /* CelulasCustomizadasDetailView */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4968B1252721979A00629574 = {
+			isa = PBXGroup;
+			children = (
+				4968B1302721979A00629574 /* Um Gato Por Dia */,
+				4968B12F2721979A00629574 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4968B12F2721979A00629574 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4968B12E2721979A00629574 /* Um Gato Por Dia.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4968B1302721979A00629574 /* Um Gato Por Dia */ = {
+			isa = PBXGroup;
+			children = (
+				49877A62272AD35900FD64B7 /* DataBaseController.swift */,
+				4968B1312721979A00629574 /* AppDelegate.swift */,
+				491D9C762724517800E244BB /* Models */,
+				49535C3A2726C53F00692FEA /* Views */,
+				49535C392726C52F00692FEA /* Controllers */,
+				491D9C77272451B300E244BB /* LaunchScreen.storyboard */,
+				4968B13A2721979B00629574 /* Assets.xcassets */,
+				4968B13F2721979B00629574 /* Info.plist */,
+				4920F0DE2729E4740098C336 /* UmGatoPorDia.xcdatamodeld */,
+			);
+			path = "Um Gato Por Dia";
+			sourceTree = "<group>";
+		};
+		4968B1452721BB6800629574 /* CelulaCustomizadaViewPrincipal */ = {
+			isa = PBXGroup;
+			children = (
+				4968B1462721CA6400629574 /* CelulaCatsCustomizadaCollectionViewCell.swift */,
+				4968B1472721CA6400629574 /* CelulaCatsCustomizadaCollectionViewCell.xib */,
+			);
+			path = CelulaCustomizadaViewPrincipal;
+			sourceTree = "<group>";
+		};
+		49877A5D272AC7B600FD64B7 /* CelulaCustomizadaViewFavoritos */ = {
+			isa = PBXGroup;
+			children = (
+				49877A5E272AC86700FD64B7 /* FavoriteTableViewCell.swift */,
+				49877A5F272AC86700FD64B7 /* FavoriteTableViewCell.xib */,
+			);
+			path = CelulaCustomizadaViewFavoritos;
+			sourceTree = "<group>";
+		};
+		49877AB6272B488500FD64B7 /* CelulasCustomizadasDetailView */ = {
+			isa = PBXGroup;
+			children = (
+				495A3ADD2728521800811B16 /* ImageViewCell.swift */,
+				49877AB2272B20F600FD64B7 /* FavTableViewCell.swift */,
+				49877AB3272B20F600FD64B7 /* FavTableViewCell.xib */,
+			);
+			path = CelulasCustomizadasDetailView;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4968B12D2721979A00629574 /* Um Gato Por Dia */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4968B1422721979B00629574 /* Build configuration list for PBXNativeTarget "Um Gato Por Dia" */;
+			buildPhases = (
+				4968B12A2721979A00629574 /* Sources */,
+				4968B12B2721979A00629574 /* Frameworks */,
+				4968B12C2721979A00629574 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Um Gato Por Dia";
+			packageProductDependencies = (
+				491D9C802724536B00E244BB /* SnapKit */,
+				491D9C832724538200E244BB /* Kingfisher */,
+			);
+			productName = "Um Gato Por Dia";
+			productReference = 4968B12E2721979A00629574 /* Um Gato Por Dia.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4968B1262721979A00629574 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1300;
+				LastUpgradeCheck = 1300;
+				TargetAttributes = {
+					4968B12D2721979A00629574 = {
+						CreatedOnToolsVersion = 13.0;
+					};
+				};
+			};
+			buildConfigurationList = 4968B1292721979A00629574 /* Build configuration list for PBXProject "Um Gato Por Dia" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4968B1252721979A00629574;
+			packageReferences = (
+				491D9C7F2724536B00E244BB /* XCRemoteSwiftPackageReference "SnapKit" */,
+				491D9C822724538200E244BB /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
+			productRefGroup = 4968B12F2721979A00629574 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4968B12D2721979A00629574 /* Um Gato Por Dia */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4968B12C2721979A00629574 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				491D9C78272451B300E244BB /* LaunchScreen.storyboard in Resources */,
+				49877A61272AC86700FD64B7 /* FavoriteTableViewCell.xib in Resources */,
+				49877AB5272B20F600FD64B7 /* FavTableViewCell.xib in Resources */,
+				4968B1492721CA6400629574 /* CelulaCatsCustomizadaCollectionViewCell.xib in Resources */,
+				4968B13B2721979B00629574 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4968B12A2721979A00629574 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49535C382726B98100692FEA /* DetailViewController.swift in Sources */,
+				4968B14B2721DBE100629574 /* Cats.swift in Sources */,
+				4920F0E22729EF950098C336 /* FavoriteViewController.swift in Sources */,
+				4968B1482721CA6400629574 /* CelulaCatsCustomizadaCollectionViewCell.swift in Sources */,
+				49877A60272AC86700FD64B7 /* FavoriteTableViewCell.swift in Sources */,
+				4968B1362721979A00629574 /* ViewController.swift in Sources */,
+				4968B14D2721F1B200629574 /* ImageCat.swift in Sources */,
+				4920F0E02729E4740098C336 /* UmGatoPorDia.xcdatamodeld in Sources */,
+				4968B14F2721F21900629574 /* API.swift in Sources */,
+				4968B1532721FEE800629574 /* EndPoints.swift in Sources */,
+				4968B1322721979A00629574 /* AppDelegate.swift in Sources */,
+				49877A63272AD35900FD64B7 /* DataBaseController.swift in Sources */,
+				49877AB4272B20F600FD64B7 /* FavTableViewCell.swift in Sources */,
+				495A3ADE2728521800811B16 /* ImageViewCell.swift in Sources */,
+				4968B1512721F42700629574 /* HTTPMethod.swift in Sources */,
+				4920F0E42729F4D90098C336 /* APIError.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		4968B1402721979B00629574 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		4968B1412721979B00629574 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4968B1432721979B00629574 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = TV958P3GRT;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Um Gato Por Dia/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "One Cat a Day";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "teste.Um-Gato-Por-Dia";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		4968B1442721979B00629574 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = TV958P3GRT;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Um Gato Por Dia/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "One Cat a Day";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "teste.Um-Gato-Por-Dia";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4968B1292721979A00629574 /* Build configuration list for PBXProject "Um Gato Por Dia" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4968B1402721979B00629574 /* Debug */,
+				4968B1412721979B00629574 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4968B1422721979B00629574 /* Build configuration list for PBXNativeTarget "Um Gato Por Dia" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4968B1432721979B00629574 /* Debug */,
+				4968B1442721979B00629574 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		491D9C7F2724536B00E244BB /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		491D9C822724538200E244BB /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		491D9C802724536B00E244BB /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 491D9C7F2724536B00E244BB /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		491D9C832724538200E244BB /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 491D9C822724538200E244BB /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		4920F0DE2729E4740098C336 /* UmGatoPorDia.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4920F0DF2729E4740098C336 /* UmGatoPorDia.xcdatamodel */,
+			);
+			currentVersion = 4920F0DF2729E4740098C336 /* UmGatoPorDia.xcdatamodel */;
+			path = UmGatoPorDia.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 4968B1262721979A00629574 /* Project object */;
+}
