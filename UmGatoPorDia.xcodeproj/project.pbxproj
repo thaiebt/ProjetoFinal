@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4918A5B0272C52F500C05A60 /* UmGatoPorDia.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4920F0DE2729E4740098C336 /* UmGatoPorDia.xcdatamodeld */; };
 		491D9C78272451B300E244BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 491D9C77272451B300E244BB /* LaunchScreen.storyboard */; };
 		491D9C812724536B00E244BB /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 491D9C802724536B00E244BB /* SnapKit */; };
 		491D9C842724538200E244BB /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 491D9C832724538200E244BB /* Kingfisher */; };
-		4920F0E02729E4740098C336 /* UmGatoPorDia.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4920F0DE2729E4740098C336 /* UmGatoPorDia.xcdatamodeld */; };
 		4920F0E22729EF950098C336 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4920F0E12729EF950098C336 /* FavoriteViewController.swift */; };
 		4920F0E42729F4D90098C336 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4920F0E32729F4D90098C336 /* APIError.swift */; };
 		49535C382726B98100692FEA /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49535C372726B98100692FEA /* DetailViewController.swift */; };
@@ -203,7 +203,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4968B1292721979A00629574 /* Build configuration list for PBXProject "Um Gato Por Dia" */;
+			buildConfigurationList = 4968B1292721979A00629574 /* Build configuration list for PBXProject "UmGatoPorDia" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -252,13 +252,13 @@
 				49877A60272AC86700FD64B7 /* FavoriteTableViewCell.swift in Sources */,
 				4968B1362721979A00629574 /* ViewController.swift in Sources */,
 				4968B14D2721F1B200629574 /* ImageCat.swift in Sources */,
-				4920F0E02729E4740098C336 /* UmGatoPorDia.xcdatamodeld in Sources */,
 				4968B14F2721F21900629574 /* API.swift in Sources */,
 				4968B1532721FEE800629574 /* EndPoints.swift in Sources */,
 				4968B1322721979A00629574 /* AppDelegate.swift in Sources */,
 				49877A63272AD35900FD64B7 /* DataBaseController.swift in Sources */,
 				49877AB4272B20F600FD64B7 /* FavTableViewCell.swift in Sources */,
 				495A3ADE2728521800811B16 /* ImageViewCell.swift in Sources */,
+				4918A5B0272C52F500C05A60 /* UmGatoPorDia.xcdatamodeld in Sources */,
 				4968B1512721F42700629574 /* HTTPMethod.swift in Sources */,
 				4920F0E42729F4D90098C336 /* APIError.swift in Sources */,
 			);
@@ -446,7 +446,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4968B1292721979A00629574 /* Build configuration list for PBXProject "Um Gato Por Dia" */ = {
+		4968B1292721979A00629574 /* Build configuration list for PBXProject "UmGatoPorDia" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4968B1402721979B00629574 /* Debug */,
