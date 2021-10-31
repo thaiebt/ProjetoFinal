@@ -40,6 +40,7 @@ class DetailViewControler: UIViewController {
         self.title = touchedCat.name
         
         verifyFavorite()
+        
     }
     
 
@@ -106,7 +107,7 @@ extension DetailViewControler: UITableViewDataSource {
             guard let url = URL(string: urlString) else { return UITableViewCell() }
             cellImage.setImageView(url: url)
         } else {
-            cellImage.uiiv_ImageCat.image = UIImage(named: "placeHolderCat")
+            cellImage.imageDetailCat.image = UIImage(named: "placeHolderCat")
         }
         return cellImage
     }

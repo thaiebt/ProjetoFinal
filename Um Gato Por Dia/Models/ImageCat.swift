@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ImageCat: Codable {
+class ImageCat: Codable {
     var url: String?
     
     enum CodingKeys: String, CodingKey {

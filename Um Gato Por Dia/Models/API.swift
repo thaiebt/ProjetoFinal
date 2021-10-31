@@ -52,7 +52,7 @@ struct API {
             }
             
             guard let data = result else {
-                errorReturned(APIError.emptyReponse)
+                errorReturned(APIError.notFound)
                 return
             }
             

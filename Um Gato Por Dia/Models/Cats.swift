@@ -57,7 +57,7 @@ import Foundation
 //},
 
 
-struct Cat: Codable {
+class Cat: Codable {
     var description: String?
     var identifier: String?
     var image: ImageCat?

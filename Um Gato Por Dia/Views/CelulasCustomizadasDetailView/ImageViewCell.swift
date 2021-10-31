@@ -9,12 +9,12 @@ import UIKit
 
 class ImageViewCell: UITableViewCell {
     
-    var uiiv_ImageCat = UIImageView()
+    var imageDetailCat = UIImageView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.addSubview(self.uiiv_ImageCat)
+        self.addSubview(self.imageDetailCat)
     }
     
     required init?(coder: NSCoder) {
@@ -24,10 +24,10 @@ class ImageViewCell: UITableViewCell {
     func setImageView(url: URL) {
         
         
-        self.uiiv_ImageCat.contentMode = .scaleAspectFit
+        self.imageDetailCat.contentMode = .scaleAspectFit
         
         
-        self.uiiv_ImageCat.kf.setImage(with: url,
+        self.imageDetailCat.kf.setImage(with: url,
                                     options: [
                                         .cacheOriginalImage
                                     ],
@@ -36,7 +36,7 @@ class ImageViewCell: UITableViewCell {
             })
         
         
-        self.uiiv_ImageCat.snp.makeConstraints { make in
+        self.imageDetailCat.snp.makeConstraints { make in
             
             make.top.equalTo(self).offset(10)
             make.bottom.equalTo(self).offset(-10)

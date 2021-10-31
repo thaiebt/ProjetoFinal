@@ -42,7 +42,6 @@ class ViewController: UIViewController {
         collectionView.dataSource = self
     
         //collectionView.backgroundColor = .clear
-        self.createRightButton()
         
         return collectionView
     }()
@@ -69,6 +68,12 @@ class ViewController: UIViewController {
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.createRightButton()
+    }
+    
     //MARK: Métodos
     
     // Criandro a função que adiciona constrains na Collection
@@ -91,7 +96,7 @@ class ViewController: UIViewController {
             }
         } errorReturned: { error in
             switch error {
-            case .emptyArray:
+            case .emptyReponse:
                 self.showUserAlert(message: "The array is empty")
             case .notFound:
                 self.showUserAlert(message: "No internet access")
