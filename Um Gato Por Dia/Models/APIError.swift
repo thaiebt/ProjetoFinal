@@ -10,7 +10,7 @@ import Foundation
 enum APIError: Error {
     case emptyReponse
     case notFound
-    case emptyArray
+    case emptyData
     case serverError
-    case invalidResponse
+    case invalidData
 }

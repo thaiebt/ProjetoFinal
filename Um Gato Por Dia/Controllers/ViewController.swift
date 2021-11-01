@@ -8,6 +8,7 @@
 import UIKit
 import Kingfisher
 import SnapKit
+import AVFoundation
 
 class ViewController: UIViewController {
     
@@ -61,17 +62,55 @@ class ViewController: UIViewController {
         
         self.view.backgroundColor = .white
         
-        self.populaArrayCat()
+        self.populaArrayCat { [weak self] result in
+            guard self != nil else { return }
+
+            switch result {
+            case .success(let cats):
+                self?.arrayCat = cats
+                DispatchQueue.main.async {
+                    self?.catsCollectionView.reloadData()
+                }
+            case .failure(let error):
+                switch error {
+                case .emptyReponse:
+                    self?.showUserAlert(message: "The array is empty")
+                case .emptyData:
+                    self?.showUserAlert(message: "No internet access")
+                default:
+                    break;
+                }
+            }
+        }
         
         self.title = "One cat a day"
-        
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.createRightButton()
+//        self.createRightButton()
+//
+//        self.populaArrayCat { [weak self] result in
+//            guard self != nil else { return }
+//
+//            switch result {
+//            case .success(let cats):
+//                self?.arrayCat = cats
+//                DispatchQueue.main.async {
+//                    self?.catsCollectionView.reloadData()
+//                }
+//            case .failure(let error):
+//                switch error {
+//                case .emptyReponse:
+//                    self?.showUserAlert(message: "The array is empty")
+//                case .emptyData:
+//                    self?.showUserAlert(message: "No internet access")
+//                default:
+//                    break;
+//                }
+//            }
+//        }
     }
     
     //MARK: Métodos
@@ -87,24 +126,21 @@ class ViewController: UIViewController {
         ])
     }
 
-    //Criando a função que busca na API os itens e popula o array
-    func populaArrayCat() {
-        api.getCats(urlString: api.setBreedURL(), method: .GET, key: apiKey) { cat in
-            DispatchQueue.main.async {
-                self.arrayCat = cat
-                self.catsCollectionView.reloadData()
+    //Criando a função que busca na API usando completion
+    func populaArrayCat(completion: @escaping (Result<[Cat], APIError>) -> Void) {
+        //let mApi = self.api
+        
+        self.api.getCats(urlString: self.api.setBreedURL(), method: .GET, key: apiKey) { [weak self] result in
+            guard self != nil else {return}
+            
+            switch result {
+            case .success(let cats):
+                completion(Result.success(cats))
+            case .failure(let error):
+                completion(Result.failure(error))
             }
-        } errorReturned: { error in
-            switch error {
-            case .emptyReponse:
-                self.showUserAlert(message: "The array is empty")
-            case .notFound:
-                self.showUserAlert(message: "No internet access")
-            default:
-                break;
-            }
+            //self?.catsCollectionView.reloadData()
         }
-
     }
     
     func showUserAlert(message: String) {
@@ -112,7 +148,26 @@ class ViewController: UIViewController {
             let alert = UIAlertController(title: "Attention", message: message, preferredStyle: .alert)
             
             let buttonRedoCallApi = UIAlertAction(title: "Try again", style: .default) { _ in
-                self.populaArrayCat()
+                self.self.populaArrayCat { [weak self] result in
+                    guard self != nil else { return }
+                    
+                    switch result {
+                    case .success(let cats):
+                        self?.arrayCat = cats
+                        DispatchQueue.main.async {
+                            self?.catsCollectionView.reloadData()
+                        }
+                    case .failure(let error):
+                        switch error {
+                        case .emptyReponse:
+                            self?.showUserAlert(message: "The array is empty")
+                        case .emptyData:
+                            self?.showUserAlert(message: "No internet access")
+                        default:
+                            break;
+                        }
+                    }
+                }
             }
             
             let buttonGoToFavorite = UIAlertAction(title: "Go to favorites", style: .default) { _ in
@@ -129,29 +184,21 @@ class ViewController: UIViewController {
             self.present(alert, animated: true, completion: nil)
         }
     }
-    
-    
     //Função para criar botão de acesso aos favoritos
     func createRightButton() {
         let heartImage = UIImage(systemName: "heart.fill")
-        
         let rightButton = UIBarButtonItem(image: heartImage, style: UIBarButtonItem.Style.plain, target: self, action: #selector(getFavorite))
-        
         rightButton.tintColor = .systemPurple
         self.navigationItem.rightBarButtonItem = rightButton
-        
     }
-    
+    // Definindo a ação do right button
     @objc func getFavorite() {
         let favViewController = FavoriteViewController()
         self.show(favViewController, sender: nil)
     }
-    
-
 }
 
-    //MARK: Extensões
-
+// MARK: Extensões
 extension ViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -167,7 +214,6 @@ extension ViewController: UICollectionViewDataSource {
         // Configuração da imagem usando o Framework KingFisher
         if let image = self.arrayCat[indexPath.row].image?.url {
             let url = URL(string: image)
-            
             cell?.imageCatCollectionView.kf.setImage(with: url,
                                                      placeholder: UIImage(named: "placeHolderCat"),
                                                      options: [
@@ -179,39 +225,30 @@ extension ViewController: UICollectionViewDataSource {
         } else {
             cell?.imageCatCollectionView.image = UIImage(named: "placeHolderCat")
         }
-        
         cell?.imageCatCollectionView.contentMode = .scaleAspectFill
         cell?.layer.cornerRadius = 15
         
+        // Configurando a label com o nome do gato
         cell?.nameCatCollectionView.text = self.arrayCat[indexPath.row].name
         cell?.nameCatCollectionView.textColor = .white
         cell?.nameCatCollectionView.textAlignment = .center
         
+        // Configurando a label com o número do dia
         cell?.labelDay.text = ("Day \(indexPath.row + 1)")
         cell?.labelDay.textColor = .white
         cell?.labelDay.textAlignment = .center
         cell?.labelDay.font = UIFont.boldSystemFont(ofSize: 25.0)
         
-        
-        
         return cell!
     }
-    
-    
-    
 }
-
 
 extension ViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let detail = DetailViewControler()
-        
         detail.touchedCat = self.arrayCat[indexPath.row]
-        
         self.show(detail, sender: nil)
-        
     }
-    
 }

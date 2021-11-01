@@ -12,7 +12,6 @@ import CoreData
 class DetailViewControler: UIViewController {
  
 // MARK: Variáveis
-    
     lazy var detailTableCat: UITableView = {
         
         var table = UITableView()
@@ -33,13 +32,12 @@ class DetailViewControler: UIViewController {
         self.view.addSubview(detailTableCat)
         // título da tabela:
         self.title = touchedCat.name
-        // verificando ao carregar quais itens estão salvos no Core Data como favoritos
+        // Verificando ao carregar quais itens estão salvos no Core Data como favoritos
         verifyFavorite()
     }
 }
 
 // MARK: Extensões
-
 extension DetailViewControler: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 8
@@ -62,28 +60,20 @@ extension DetailViewControler: UITableViewDataSource {
         switch indexPath.row {
         case 0:
             return self.setImage()
-            
         case 1:
             return self.setName(cell: cell)
-            
         case 2:
             return self.setDescription(cell: cell)
-            
         case 3:
             return self.setOrigin(cell: cell)
-            
         case 4:
             return self.setLife_Span(cell: cell)
-            
         case 5:
             return self.setTemperament(cell: cell)
-            
         case 6:
             return setWikipedia_Url(cell: cell)
-            
         case 7:
             return self.showFavoriteButton()
-            
         default:
             return UITableViewCell()
         }
@@ -156,24 +146,22 @@ extension DetailViewControler: UITableViewDataSource {
     
     func setCellAddFavorites() -> UITableViewCell {
        let cell = FavTableViewCell()
-        
+        // Definindo imagem
         cell.imageView?.image = UIImage(systemName: "heart.fill")
         cell.imageView?.tintColor = .purple
-        
+        // Definindo texto
         cell.textLabel?.text = "Add to favorites"
-        
         
         return cell
     }
     
     func setCellRemoveFavorites() -> UITableViewCell {
         let cell = FavTableViewCell()
-         
+         // Definindo imagem
          cell.imageView?.image = UIImage(systemName: "heart.slash.fill")
          cell.imageView?.tintColor = .purple
-         
+         // Definindo texto
          cell.textLabel?.text = "Remove to favorites"
-         
          
          return cell
     }
@@ -183,7 +171,7 @@ extension DetailViewControler: UITableViewDataSource {
 extension DetailViewControler: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        // Definindo seleção da linha do link para a Wikipedia
         if indexPath.row == 6 {
             guard let wikipedia_url = touchedCat.wikipediaUrl else { return }
             guard let url = URL(string: wikipedia_url) else { return }
@@ -193,7 +181,7 @@ extension DetailViewControler: UITableViewDelegate {
             showDetailViewController(safariViewController, sender: nil)
         }
         print(indexPath.row)
-        
+        // Definindo seleção da linha de adicionar ou remover favoritos
         if indexPath.row == 7 {
             if isFavorite {
                 removeFavorite()
@@ -201,7 +189,6 @@ extension DetailViewControler: UITableViewDelegate {
                 addFavorites()
             }
         }
-        
     }
     
     func showFavoriteButton() -> UITableViewCell {
@@ -283,19 +270,13 @@ extension DetailViewControler: UITableViewDelegate {
         let context = DataBaseController.persistentContainer.viewContext
 
         if let objects = try? context.fetch(fetchRequest) {
-            
-        
             for object in objects {
                 context.delete(object)
             }
         }
-        
         try? context.save()
-        
         isFavorite = false
-        
         self.detailTableCat.reloadData()
-        
     }
     
    

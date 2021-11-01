@@ -15,7 +15,6 @@ class IntegrationTests: XCTestCase {
         let sut = ViewController()
         sut.loadViewIfNeeded()
         //Exercise
-        sut.populaArrayCat()
         sleep(5)
         // Verify
         guard sut.arrayCat.count > 0 else {

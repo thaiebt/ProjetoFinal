@@ -13,14 +13,11 @@ class FavoriteViewController: UIViewController {
     var favoriteCat: [CatEntity] = []
     var reuseIdentifier = "favCell"
     
-    
     lazy var favoriteTableCat: UITableView = {
         let favTable = UITableView()
-        
         favTable.frame = self.view.bounds
         favTable.delegate = self
         favTable.dataSource = self
-        
         return favTable
     }()
 
@@ -42,7 +39,7 @@ class FavoriteViewController: UIViewController {
         reloadTableViewAddFavorites()
     }
     
-    //MARK: Métodos
+    // MARK: Métodos
     
     func reloadTableViewAddFavorites() {
         do {
@@ -51,10 +48,6 @@ class FavoriteViewController: UIViewController {
             print("Não consegui trazer informações do banco de dados!")
         }
         self.favoriteTableCat.reloadData()
-    }
-    
-    func reloadTableViewRemoveFavorites() {
-        
     }
 
 }
