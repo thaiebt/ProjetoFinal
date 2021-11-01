@@ -12,10 +12,10 @@ import AVFoundation
 
 class ViewController: UIViewController {
     
-    //MARK: Váriáveis
-    
+// MARK: Váriáveis
     var arrayCat: [Cat] = []
-    let api = API()
+    //let api = API()
+    var api: CatApi?
     let apiKey = "dc1f410d-5088-4bb5-bb19-a4f2852b7c27"
     let day = "Day "
     
@@ -46,7 +46,11 @@ class ViewController: UIViewController {
         
         return collectionView
     }()
-
+    // Fazendo a injeção de dependencia dentro da classe
+    convenience init (api: CatApi) {
+        self.init()
+        self.api = api
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,20 +58,31 @@ class ViewController: UIViewController {
         
         self.view.addSubview(catsCollectionView)
         
+        // Aplicando as constrains da CollectionView
         makeConstrainCollectionView()
-        
-        //Registrando celula customizada collection
+        //Registrando celula customizada CollectionView
         let nibCell = UINib(nibName: "CelulaCatsCustomizadaCollectionViewCell", bundle: nil)
         catsCollectionView.register(nibCell, forCellWithReuseIdentifier: CelulaCatsCustomizadaCollectionViewCell.idCelulaCollectionView)
         
         self.view.backgroundColor = .white
+        self.title = "One cat a day"
         
+        // Chamando o método de buscar os itens na API e populando o array
         self.populaArrayCat { [weak self] result in
             guard self != nil else { return }
 
             switch result {
             case .success(let cats):
-                self?.arrayCat = cats
+                // Variável auxiliar para salvar somente os itens que vem da API que tenham imagem
+                var auxCat: [Cat] = []
+                // salvando no array auxiliar somente os itens que venham da API que tenha imagem
+                for cat in cats {
+                    if cat.image != nil {
+                        auxCat.append(cat)
+                    }
+                }
+                // Passando para o arrayCat os itens que vieram com imagem da API
+                self?.arrayCat = auxCat
                 DispatchQueue.main.async {
                     self?.catsCollectionView.reloadData()
                 }
@@ -82,43 +97,19 @@ class ViewController: UIViewController {
                 }
             }
         }
-        
-        self.title = "One cat a day"
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-//        self.createRightButton()
-//
-//        self.populaArrayCat { [weak self] result in
-//            guard self != nil else { return }
-//
-//            switch result {
-//            case .success(let cats):
-//                self?.arrayCat = cats
-//                DispatchQueue.main.async {
-//                    self?.catsCollectionView.reloadData()
-//                }
-//            case .failure(let error):
-//                switch error {
-//                case .emptyReponse:
-//                    self?.showUserAlert(message: "The array is empty")
-//                case .emptyData:
-//                    self?.showUserAlert(message: "No internet access")
-//                default:
-//                    break;
-//                }
-//            }
-//        }
+        self.createRightButton()
     }
     
-    //MARK: Métodos
+    // MARK: Métodos
     
-    // Criandro a função que adiciona constrains na Collection
+    // Criandro a função que adiciona constrains na CollectionView
     fileprivate func makeConstrainCollectionView() {
         NSLayoutConstraint.activate([
-            //catsCollectionView.heightAnchor.constraint(equalTo: self.view.heightAnchor),
             catsCollectionView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
             catsCollectionView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.95),
             catsCollectionView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
@@ -128,9 +119,9 @@ class ViewController: UIViewController {
 
     //Criando a função que busca na API usando completion
     func populaArrayCat(completion: @escaping (Result<[Cat], APIError>) -> Void) {
-        //let mApi = self.api
+        guard let mApi = self.api else { return }
         
-        self.api.getCats(urlString: self.api.setBreedURL(), method: .GET, key: apiKey) { [weak self] result in
+        mApi.getCats(urlString: mApi.setBreedURL(), method: .GET, key: apiKey) { [weak self] result in
             guard self != nil else {return}
             
             switch result {
@@ -142,7 +133,7 @@ class ViewController: UIViewController {
             //self?.catsCollectionView.reloadData()
         }
     }
-    
+    // Criando a função de alertas
     func showUserAlert(message: String) {
         DispatchQueue.main.async {
             let alert = UIAlertController(title: "Attention", message: message, preferredStyle: .alert)
@@ -222,9 +213,10 @@ extension ViewController: UICollectionViewDataSource {
                                                         ],
                                                      progressBlock: nil ,
                                                      completionHandler: nil)
-        } else {
+       }else {
             cell?.imageCatCollectionView.image = UIImage(named: "placeHolderCat")
         }
+        
         cell?.imageCatCollectionView.contentMode = .scaleAspectFill
         cell?.layer.cornerRadius = 15
         

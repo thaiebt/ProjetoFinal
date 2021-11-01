@@ -13,5 +13,27 @@
             </PersistentString>
          </PersistentStrings>
       </ContextState>
+      <ContextState
+         contextName = "IntegrationTests.testApiIntegration():IntegrationTests.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ViewController.collectionView(_:numberOfItemsInSection:):ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.arrayCat.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ViewController.collectionView(_:cellForItemAt:):ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "indexPath.row">
+            </PersistentString>
+            <PersistentString
+               value = "self.arrayCat.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
    </ContextStates>
 </VariablesViewState>

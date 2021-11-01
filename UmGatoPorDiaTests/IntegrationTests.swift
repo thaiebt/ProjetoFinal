@@ -12,15 +12,18 @@ class IntegrationTests: XCTestCase {
 
     func testApiIntegration() {
         // Setup
-        let sut = ViewController()
+        let api = API()
+        let sut = ViewController(api: api)
         sut.loadViewIfNeeded()
+        
         //Exercise
         sleep(5)
-        // Verify
         guard sut.arrayCat.count > 0 else {
             XCTFail()
             return
         }
+        
+        // Verify
         let charactersFromTheFirstCatsName = sut.arrayCat[0].name?.count ?? 0
         XCTAssertTrue(charactersFromTheFirstCatsName > 0)
     }

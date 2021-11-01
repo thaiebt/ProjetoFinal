@@ -4,13 +4,13 @@
         <attribute name="catDescription" optional="YES" attributeType="String"/>
         <attribute name="catIdentifier" optional="YES" attributeType="String"/>
         <attribute name="catImage" optional="YES" attributeType="String"/>
-        <attribute name="catLife_span" optional="YES" attributeType="String"/>
+        <attribute name="catLifeSpan" optional="YES" attributeType="String"/>
         <attribute name="catName" optional="YES" attributeType="String"/>
         <attribute name="catOrigin" optional="YES" attributeType="String"/>
         <attribute name="catTemperament" optional="YES" attributeType="String"/>
-        <attribute name="catWikipedia_url" optional="YES" attributeType="String"/>
+        <attribute name="catWikipediaUrl" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="CatEntity" positionX="-36" positionY="9" width="128" height="14"/>
+        <element name="CatEntity" positionX="-36" positionY="9" width="128" height="149"/>
     </elements>
 </model>

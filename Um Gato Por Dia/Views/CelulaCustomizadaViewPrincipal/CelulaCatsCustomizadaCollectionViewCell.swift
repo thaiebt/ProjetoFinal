@@ -17,8 +17,6 @@ class CelulaCatsCustomizadaCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imageCatCollectionView: UIImageView!
     
-    
-
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

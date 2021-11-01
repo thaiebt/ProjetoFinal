@@ -34,6 +34,7 @@ class DetailViewControler: UIViewController {
         self.title = touchedCat.name
         // Verificando ao carregar quais itens estão salvos no Core Data como favoritos
         verifyFavorite()
+        
     }
 }
 
@@ -165,7 +166,6 @@ extension DetailViewControler: UITableViewDataSource {
          
          return cell
     }
-
 }
 
 extension DetailViewControler: UITableViewDelegate {
@@ -205,7 +205,6 @@ extension DetailViewControler: UITableViewDelegate {
         let context = DataBaseController.persistentContainer.viewContext
         
         do {
-            
             guard let catIdentifier = touchedCat.identifier else { return }
             
             let fetchRequest = CatEntity.fetchRequest()
@@ -219,7 +218,6 @@ extension DetailViewControler: UITableViewDelegate {
             } else {
                 isFavorite = false
             }
-            
         } catch {
             print("Error")
         }
@@ -230,11 +228,11 @@ extension DetailViewControler: UITableViewDelegate {
         if let catDescription = touchedCat.description,
            let catIdentifier = touchedCat.identifier,
            let catImage = touchedCat.image?.url,
-           let catLife_span = touchedCat.lifeSpan,
+           let catLifeSpan = touchedCat.lifeSpan,
            let catName = touchedCat.name,
            let catOrigin = touchedCat.origin,
            let catTemperament = touchedCat.temperament,
-           let catWikipedia_url = touchedCat.wikipediaUrl {
+           let catWikipediaUrl = touchedCat.wikipediaUrl {
             
             let context = DataBaseController.persistentContainer.viewContext
             
@@ -243,11 +241,11 @@ extension DetailViewControler: UITableViewDelegate {
             cat.catDescription = catDescription
             cat.catIdentifier = catIdentifier
             cat.catImage = catImage
-            cat.catLife_span = catLife_span
+            cat.catLifeSpan = catLifeSpan
             cat.catName = catName
             cat.catOrigin = catOrigin
             cat.catTemperament = catTemperament
-            cat.catWikipedia_url = catWikipedia_url
+            cat.catWikipediaUrl = catWikipediaUrl
             
             DataBaseController.saveContext()
             

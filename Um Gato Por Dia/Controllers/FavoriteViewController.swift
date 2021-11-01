@@ -67,14 +67,17 @@ extension FavoriteViewController: UITableViewDataSource {
         let favCat = favoriteCat[indexPath.row]
         
         cell?.accessoryType = .disclosureIndicator
+        
         // Configurando label título
         cell?.labelNameCatFavTable.text = favCat.catName
         cell?.labelNameCatFavTable.font = UIFont.boldSystemFont(ofSize: 18.0)
         cell?.labelNameCatFavTable.textColor = .darkGray
+        
         // Configurando label subtítulo
         cell?.labelDescriptionFavTable.text = favCat.catDescription
         cell?.labelDescriptionFavTable.numberOfLines = 0
         cell?.labelDescriptionFavTable.font = UIFont.systemFont(ofSize: 15.0)
+        
         // Configurando imagem
         if let image = favCat.catImage {
             let url = URL(string: image)
@@ -82,7 +85,7 @@ extension FavoriteViewController: UITableViewDataSource {
         } else {
             cell?.imageCatFavTable.image = UIImage(named: "placeHolderCat")
         }
-        cell?.imageCatFavTable.layer.cornerRadius = 65
+        cell?.imageCatFavTable.layer.cornerRadius = 55
         cell?.imageCatFavTable.layer.masksToBounds = true
         cell?.imageCatFavTable.contentMode = .scaleAspectFill
         
@@ -104,11 +107,11 @@ extension FavoriteViewController: UITableViewDelegate {
         newTouchedCat.description = favCatEntity.catDescription
         newTouchedCat.identifier = favCatEntity.catIdentifier
         newTouchedCat.image = imageCat
-        newTouchedCat.lifeSpan = favCatEntity.catLife_span
+        newTouchedCat.lifeSpan = favCatEntity.catLifeSpan
         newTouchedCat.name = favCatEntity.catName
         newTouchedCat.origin = favCatEntity.catOrigin
         newTouchedCat.temperament = favCatEntity.catTemperament
-        newTouchedCat.wikipediaUrl = favCatEntity.catWikipedia_url
+        newTouchedCat.wikipediaUrl = favCatEntity.catWikipediaUrl
         
         detail.touchedCat = newTouchedCat
         

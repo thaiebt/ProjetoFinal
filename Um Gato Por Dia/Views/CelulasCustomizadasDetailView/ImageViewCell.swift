@@ -16,25 +16,19 @@ class ImageViewCell: UITableViewCell {
         
         self.addSubview(self.imageDetailCat)
     }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     func setImageView(url: URL) {
-        
-        
         self.imageDetailCat.contentMode = .scaleAspectFit
         self.imageDetailCat.kf.setImage(with: url,
                                     options: [
                                         .cacheOriginalImage
                                     ],
-                                    completionHandler: { result in
-            
-            })
+                                    completionHandler: nil)
         
         self.imageDetailCat.snp.makeConstraints { make in
-            
             make.top.equalTo(self).offset(10)
             make.bottom.equalTo(self).offset(-10)
             make.centerX.equalTo(self)
@@ -42,7 +36,5 @@ class ImageViewCell: UITableViewCell {
             make.width.equalTo(self).offset(-15)
             make.height.equalTo(300)
         }
-        
     }
-    
 }
