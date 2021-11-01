@@ -49,7 +49,20 @@
 		<key>Um Gato Por Dia.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>1</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>4968B12D2721979A00629574</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>497BA4CA27303370005D89B5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

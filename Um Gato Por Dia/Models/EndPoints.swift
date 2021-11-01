@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum endPoints {
+enum EndPoints {
     case breeds
     case categories
 }

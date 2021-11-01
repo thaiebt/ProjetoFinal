@@ -11,7 +11,7 @@ import CoreData
 
 class DetailViewControler: UIViewController {
  
-//MARK: Variáveis
+// MARK: Variáveis
     
     lazy var detailTableCat: UITableView = {
         
@@ -19,7 +19,6 @@ class DetailViewControler: UIViewController {
         table.frame = self.view.bounds
         table.delegate = self
         table.dataSource = self
-        
         table.separatorStyle = .none
         
         return table
@@ -29,24 +28,17 @@ class DetailViewControler: UIViewController {
     var touchedCat: Cat = Cat()
     var isFavorite: Bool = false
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.view.addSubview(detailTableCat)
-        
-        //título da tabela:
+        // título da tabela:
         self.title = touchedCat.name
-        
+        // verificando ao carregar quais itens estão salvos no Core Data como favoritos
         verifyFavorite()
-        
     }
-    
-
 }
 
-//MARK: Extensões
+// MARK: Extensões
 
 extension DetailViewControler: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -60,16 +52,14 @@ extension DetailViewControler: UITableViewDataSource {
         
         // Configuração da célula
         cell.selectionStyle = .none
-        
+        // Configurando textos da label de título
         cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 18.0)
         cell.textLabel?.textColor = .gray
-        
+        // Configurando textos da label de subtítulo
         cell.detailTextLabel?.font = UIFont.systemFont(ofSize: 20.0)
         
-        
-        //Configurando os itens que terá cada uma das celulas
+        // Configurando os itens que terá cada uma das celulas
         switch indexPath.row {
-            
         case 0:
             return self.setImage()
             
@@ -138,7 +128,7 @@ extension DetailViewControler: UITableViewDataSource {
     }
     
     func setLife_Span(cell: UITableViewCell) -> UITableViewCell {
-        guard let life_span = touchedCat.life_span else { return UITableViewCell() }
+        guard let life_span = touchedCat.lifeSpan else { return UITableViewCell() }
         cell.textLabel?.text = "Life expectancy: "
         cell.detailTextLabel?.text = life_span
         
@@ -155,7 +145,7 @@ extension DetailViewControler: UITableViewDataSource {
     }
     
     func setWikipedia_Url(cell: UITableViewCell) -> UITableViewCell {
-        guard let wikipedia_url = touchedCat.wikipedia_url else { return UITableViewCell() }
+        guard let wikipedia_url = touchedCat.wikipediaUrl else { return UITableViewCell() }
         cell.textLabel?.text = "Wikipedia: "
         cell.detailTextLabel?.text = "\(wikipedia_url)"
         cell.detailTextLabel?.font = UIFont.systemFont(ofSize: 15.0)
@@ -195,7 +185,7 @@ extension DetailViewControler: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if indexPath.row == 6 {
-            guard let wikipedia_url = touchedCat.wikipedia_url else { return }
+            guard let wikipedia_url = touchedCat.wikipediaUrl else { return }
             guard let url = URL(string: wikipedia_url) else { return }
             
             let safariViewController = SFSafariViewController(url: url)
@@ -253,11 +243,11 @@ extension DetailViewControler: UITableViewDelegate {
         if let catDescription = touchedCat.description,
            let catIdentifier = touchedCat.identifier,
            let catImage = touchedCat.image?.url,
-           let catLife_span = touchedCat.life_span,
+           let catLife_span = touchedCat.lifeSpan,
            let catName = touchedCat.name,
            let catOrigin = touchedCat.origin,
            let catTemperament = touchedCat.temperament,
-           let catWikipedia_url = touchedCat.wikipedia_url {
+           let catWikipedia_url = touchedCat.wikipediaUrl {
             
             let context = DataBaseController.persistentContainer.viewContext
             

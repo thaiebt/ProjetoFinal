@@ -25,12 +25,24 @@
 		4968B14F2721F21900629574 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4968B14E2721F21900629574 /* API.swift */; };
 		4968B1512721F42700629574 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4968B1502721F42700629574 /* HTTPMethod.swift */; };
 		4968B1532721FEE800629574 /* EndPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4968B1522721FEE800629574 /* EndPoints.swift */; };
+		497BA4CE27303370005D89B5 /* UmGatoPorDiaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497BA4CD27303370005D89B5 /* UmGatoPorDiaTests.swift */; };
+		497BA4D527303B53005D89B5 /* IntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497BA4D427303B53005D89B5 /* IntegrationTests.swift */; };
 		49877A60272AC86700FD64B7 /* FavoriteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49877A5E272AC86700FD64B7 /* FavoriteTableViewCell.swift */; };
 		49877A61272AC86700FD64B7 /* FavoriteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49877A5F272AC86700FD64B7 /* FavoriteTableViewCell.xib */; };
 		49877A63272AD35900FD64B7 /* DataBaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49877A62272AD35900FD64B7 /* DataBaseController.swift */; };
 		49877AB4272B20F600FD64B7 /* FavTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49877AB2272B20F600FD64B7 /* FavTableViewCell.swift */; };
 		49877AB5272B20F600FD64B7 /* FavTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49877AB3272B20F600FD64B7 /* FavTableViewCell.xib */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		497BA4CF27303370005D89B5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4968B1262721979A00629574 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4968B12D2721979A00629574;
+			remoteInfo = "Um Gato Por Dia";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		491D9C77272451B300E244BB /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -51,6 +63,9 @@
 		4968B14E2721F21900629574 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		4968B1502721F42700629574 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		4968B1522721FEE800629574 /* EndPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoints.swift; sourceTree = "<group>"; };
+		497BA4CB27303370005D89B5 /* UmGatoPorDiaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UmGatoPorDiaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		497BA4CD27303370005D89B5 /* UmGatoPorDiaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UmGatoPorDiaTests.swift; sourceTree = "<group>"; };
+		497BA4D427303B53005D89B5 /* IntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegrationTests.swift; sourceTree = "<group>"; };
 		49877A5E272AC86700FD64B7 /* FavoriteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewCell.swift; sourceTree = "<group>"; };
 		49877A5F272AC86700FD64B7 /* FavoriteTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteTableViewCell.xib; sourceTree = "<group>"; };
 		49877A62272AD35900FD64B7 /* DataBaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseController.swift; sourceTree = "<group>"; };
@@ -65,6 +80,13 @@
 			files = (
 				491D9C842724538200E244BB /* Kingfisher in Frameworks */,
 				491D9C812724536B00E244BB /* SnapKit in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		497BA4C827303370005D89B5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				4968B1302721979A00629574 /* Um Gato Por Dia */,
+				497BA4CC27303370005D89B5 /* UmGatoPorDiaTests */,
 				4968B12F2721979A00629574 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -116,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				4968B12E2721979A00629574 /* Um Gato Por Dia.app */,
+				497BA4CB27303370005D89B5 /* UmGatoPorDiaTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -143,6 +167,15 @@
 				4968B1472721CA6400629574 /* CelulaCatsCustomizadaCollectionViewCell.xib */,
 			);
 			path = CelulaCustomizadaViewPrincipal;
+			sourceTree = "<group>";
+		};
+		497BA4CC27303370005D89B5 /* UmGatoPorDiaTests */ = {
+			isa = PBXGroup;
+			children = (
+				497BA4CD27303370005D89B5 /* UmGatoPorDiaTests.swift */,
+				497BA4D427303B53005D89B5 /* IntegrationTests.swift */,
+			);
+			path = UmGatoPorDiaTests;
 			sourceTree = "<group>";
 		};
 		49877A5D272AC7B600FD64B7 /* CelulaCustomizadaViewFavoritos */ = {
@@ -188,6 +221,24 @@
 			productReference = 4968B12E2721979A00629574 /* Um Gato Por Dia.app */;
 			productType = "com.apple.product-type.application";
 		};
+		497BA4CA27303370005D89B5 /* UmGatoPorDiaTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 497BA4D327303370005D89B5 /* Build configuration list for PBXNativeTarget "UmGatoPorDiaTests" */;
+			buildPhases = (
+				497BA4C727303370005D89B5 /* Sources */,
+				497BA4C827303370005D89B5 /* Frameworks */,
+				497BA4C927303370005D89B5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				497BA4D027303370005D89B5 /* PBXTargetDependency */,
+			);
+			name = UmGatoPorDiaTests;
+			productName = UmGatoPorDiaTests;
+			productReference = 497BA4CB27303370005D89B5 /* UmGatoPorDiaTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -195,15 +246,19 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1300;
+				LastSwiftUpdateCheck = 1310;
 				LastUpgradeCheck = 1300;
 				TargetAttributes = {
 					4968B12D2721979A00629574 = {
 						CreatedOnToolsVersion = 13.0;
 					};
+					497BA4CA27303370005D89B5 = {
+						CreatedOnToolsVersion = 13.1;
+						TestTargetID = 4968B12D2721979A00629574;
+					};
 				};
 			};
-			buildConfigurationList = 4968B1292721979A00629574 /* Build configuration list for PBXProject "UmGatoPorDia" */;
+			buildConfigurationList = 4968B1292721979A00629574 /* Build configuration list for PBXProject "Um Gato Por Dia" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -221,6 +276,7 @@
 			projectRoot = "";
 			targets = (
 				4968B12D2721979A00629574 /* Um Gato Por Dia */,
+				497BA4CA27303370005D89B5 /* UmGatoPorDiaTests */,
 			);
 		};
 /* End PBXProject section */
@@ -235,6 +291,13 @@
 				49877AB5272B20F600FD64B7 /* FavTableViewCell.xib in Resources */,
 				4968B1492721CA6400629574 /* CelulaCatsCustomizadaCollectionViewCell.xib in Resources */,
 				4968B13B2721979B00629574 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		497BA4C927303370005D89B5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,7 +327,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		497BA4C727303370005D89B5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				497BA4D527303B53005D89B5 /* IntegrationTests.swift in Sources */,
+				497BA4CE27303370005D89B5 /* UmGatoPorDiaTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		497BA4D027303370005D89B5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4968B12D2721979A00629574 /* Um Gato Por Dia */;
+			targetProxy = 497BA4CF27303370005D89B5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		4968B1402721979B00629574 /* Debug */ = {
@@ -443,10 +523,56 @@
 			};
 			name = Release;
 		};
+		497BA4D127303370005D89B5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = TV958P3GRT;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = teste.UmGatoPorDiaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Um Gato Por Dia.app/Um Gato Por Dia";
+			};
+			name = Debug;
+		};
+		497BA4D227303370005D89B5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = TV958P3GRT;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = teste.UmGatoPorDiaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Um Gato Por Dia.app/Um Gato Por Dia";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4968B1292721979A00629574 /* Build configuration list for PBXProject "UmGatoPorDia" */ = {
+		4968B1292721979A00629574 /* Build configuration list for PBXProject "Um Gato Por Dia" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4968B1402721979B00629574 /* Debug */,
@@ -460,6 +586,15 @@
 			buildConfigurations = (
 				4968B1432721979B00629574 /* Debug */,
 				4968B1442721979B00629574 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		497BA4D327303370005D89B5 /* Build configuration list for PBXNativeTarget "UmGatoPorDiaTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				497BA4D127303370005D89B5 /* Debug */,
+				497BA4D227303370005D89B5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

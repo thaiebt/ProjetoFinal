@@ -25,8 +25,6 @@ class ImageViewCell: UITableViewCell {
         
         
         self.imageDetailCat.contentMode = .scaleAspectFit
-        
-        
         self.imageDetailCat.kf.setImage(with: url,
                                     options: [
                                         .cacheOriginalImage
@@ -34,7 +32,6 @@ class ImageViewCell: UITableViewCell {
                                     completionHandler: { result in
             
             })
-        
         
         self.imageDetailCat.snp.makeConstraints { make in
             

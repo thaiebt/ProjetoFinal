@@ -74,39 +74,27 @@ extension FavoriteViewController: UITableViewDataSource {
         let favCat = favoriteCat[indexPath.row]
         
         cell?.accessoryType = .disclosureIndicator
-        
+        // Configurando label título
         cell?.labelNameCatFavTable.text = favCat.catName
         cell?.labelNameCatFavTable.font = UIFont.boldSystemFont(ofSize: 18.0)
         cell?.labelNameCatFavTable.textColor = .darkGray
-
-        
+        // Configurando label subtítulo
         cell?.labelDescriptionFavTable.text = favCat.catDescription
         cell?.labelDescriptionFavTable.numberOfLines = 0
         cell?.labelDescriptionFavTable.font = UIFont.systemFont(ofSize: 15.0)
-        
-//        if let image = favCat.catImage {
-//            guard let url = URL(string: image) else { return UITableViewCell() }
-//                let data = try? Data(contentsOf: url)
-//                cell?.imageCatFavTable.image = UIImage(data: data!)
-//        } else {
-//            cell?.imageCatFavTable.image = UIImage(named: "placeHolderCat")
-//        }
-        
+        // Configurando imagem
         if let image = favCat.catImage {
             let url = URL(string: image)
             cell?.imageCatFavTable.kf.setImage(with: url, placeholder: UIImage(named: "placeHolderCat"), options: [.cacheOriginalImage], progressBlock: nil, completionHandler: nil)
         } else {
             cell?.imageCatFavTable.image = UIImage(named: "placeHolderCat")
         }
-        
         cell?.imageCatFavTable.layer.cornerRadius = 65
         cell?.imageCatFavTable.layer.masksToBounds = true
         cell?.imageCatFavTable.contentMode = .scaleAspectFill
         
         return cell!
     }
-
-
 }
 
 extension FavoriteViewController: UITableViewDelegate {
@@ -123,11 +111,11 @@ extension FavoriteViewController: UITableViewDelegate {
         newTouchedCat.description = favCatEntity.catDescription
         newTouchedCat.identifier = favCatEntity.catIdentifier
         newTouchedCat.image = imageCat
-        newTouchedCat.life_span = favCatEntity.catLife_span
+        newTouchedCat.lifeSpan = favCatEntity.catLife_span
         newTouchedCat.name = favCatEntity.catName
         newTouchedCat.origin = favCatEntity.catOrigin
         newTouchedCat.temperament = favCatEntity.catTemperament
-        newTouchedCat.wikipedia_url = favCatEntity.catWikipedia_url
+        newTouchedCat.wikipediaUrl = favCatEntity.catWikipedia_url
         
         detail.touchedCat = newTouchedCat
         
