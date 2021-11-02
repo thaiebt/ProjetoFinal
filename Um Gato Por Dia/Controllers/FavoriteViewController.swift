@@ -55,6 +55,24 @@ class FavoriteViewController: UIViewController {
 //MARK: Extensões
 
 extension FavoriteViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        var numOfSections: Int = 0
+        
+        if self.favoriteCat.count > 0 {
+                numOfSections = 1
+                tableView.backgroundView = nil
+            } else {
+                let noDataLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+                noDataLabel.text = "No cats saved as favorites"
+                noDataLabel.textColor = .darkGray
+                noDataLabel.font = UIFont.boldSystemFont(ofSize: 20)
+                noDataLabel.textAlignment = .center
+                tableView.backgroundView = noDataLabel
+                tableView.separatorStyle = .none
+            }
+            return numOfSections
+    }
+    
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return self.favoriteCat.count

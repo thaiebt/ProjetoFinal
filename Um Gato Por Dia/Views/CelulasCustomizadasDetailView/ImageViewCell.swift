@@ -21,7 +21,10 @@ class ImageViewCell: UITableViewCell {
     }
     
     func setImageView(url: URL) {
-        self.imageDetailCat.contentMode = .scaleAspectFit
+        self.imageDetailCat.layer.cornerRadius = 10
+        self.imageDetailCat.layer.masksToBounds = true
+        
+        self.imageDetailCat.contentMode = .scaleAspectFill
         self.imageDetailCat.kf.setImage(with: url,
                                     options: [
                                         .cacheOriginalImage

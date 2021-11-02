@@ -34,7 +34,6 @@ class DetailViewControler: UIViewController {
         self.title = touchedCat.name
         // Verificando ao carregar quais itens estão salvos no Core Data como favoritos
         verifyFavorite()
-        
     }
 }
 
@@ -145,6 +144,14 @@ extension DetailViewControler: UITableViewDataSource {
         return cell
     }
     
+    func showFavoriteButton() -> UITableViewCell {
+            if isFavorite {
+                return self.setCellRemoveFavorites()
+            } else {
+                return self.setCellAddFavorites()
+            }
+    }
+    
     func setCellAddFavorites() -> UITableViewCell {
        let cell = FavTableViewCell()
         // Definindo imagem
@@ -162,7 +169,7 @@ extension DetailViewControler: UITableViewDataSource {
          cell.imageView?.image = UIImage(systemName: "heart.slash.fill")
          cell.imageView?.tintColor = .purple
          // Definindo texto
-         cell.textLabel?.text = "Remove to favorites"
+         cell.textLabel?.text = "Remove from favorites"
          
          return cell
     }
@@ -189,15 +196,6 @@ extension DetailViewControler: UITableViewDelegate {
                 addFavorites()
             }
         }
-    }
-    
-    func showFavoriteButton() -> UITableViewCell {
-        
-            if isFavorite {
-                return self.setCellRemoveFavorites()
-            } else {
-                return self.setCellAddFavorites()
-            }
     }
     
     func verifyFavorite() {

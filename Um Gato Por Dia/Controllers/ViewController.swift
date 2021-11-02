@@ -25,14 +25,12 @@ class ViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         
-        
         let larguraCelula: CGFloat = (self.view.frame.width*0.95)/2-5
         layout.itemSize = CGSize(width: larguraCelula, height: larguraCelula)
         
-        //espaço entre os elementos
+        // Espaço entre os elementos
         layout.minimumLineSpacing = 10
         layout.minimumInteritemSpacing = 1
-        
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -41,8 +39,6 @@ class ViewController: UIViewController {
         
         collectionView.delegate = self
         collectionView.dataSource = self
-    
-        //collectionView.backgroundColor = .clear
         
         return collectionView
     }()
@@ -107,7 +103,7 @@ class ViewController: UIViewController {
     
     // MARK: Métodos
     
-    // Criandro a função que adiciona constrains na CollectionView
+    // Criando a função que adiciona constrains na CollectionView
     fileprivate func makeConstrainCollectionView() {
         NSLayoutConstraint.activate([
             catsCollectionView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
@@ -130,7 +126,6 @@ class ViewController: UIViewController {
             case .failure(let error):
                 completion(Result.failure(error))
             }
-            //self?.catsCollectionView.reloadData()
         }
     }
     // Criando a função de alertas
@@ -139,12 +134,19 @@ class ViewController: UIViewController {
             let alert = UIAlertController(title: "Attention", message: message, preferredStyle: .alert)
             
             let buttonRedoCallApi = UIAlertAction(title: "Try again", style: .default) { _ in
-                self.self.populaArrayCat { [weak self] result in
+                self.populaArrayCat { [weak self] result in
                     guard self != nil else { return }
-                    
+
                     switch result {
                     case .success(let cats):
-                        self?.arrayCat = cats
+                        var auxCat: [Cat] = []
+                        
+                        for cat in cats {
+                            if cat.image != nil {
+                                auxCat.append(cat)
+                            }
+                        }
+                        self?.arrayCat = auxCat
                         DispatchQueue.main.async {
                             self?.catsCollectionView.reloadData()
                         }
