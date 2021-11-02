@@ -73,7 +73,7 @@ class ViewController: UIViewController {
                 var auxCat: [Cat] = []
                 // salvando no array auxiliar somente os itens que venham da API que tenha imagem
                 for cat in cats {
-                    if cat.image != nil {
+                    if cat.image != nil && cat.image?.url != nil {
                         auxCat.append(cat)
                     }
                 }

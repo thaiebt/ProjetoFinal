@@ -9,7 +9,7 @@ import UIKit
 import Kingfisher
 
 class FavoriteViewController: UIViewController {
-    
+
     var favoriteCat: [CatEntity] = []
     var reuseIdentifier = "favCell"
     
@@ -57,7 +57,7 @@ class FavoriteViewController: UIViewController {
 extension FavoriteViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         var numOfSections: Int = 0
-        
+        // Definindo número de sessões e mensagem quando o número de sessões for zero
         if self.favoriteCat.count > 0 {
                 numOfSections = 1
                 tableView.backgroundView = nil
@@ -65,7 +65,7 @@ extension FavoriteViewController: UITableViewDataSource {
                 let noDataLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
                 noDataLabel.text = "No cats saved as favorites"
                 noDataLabel.textColor = .darkGray
-                noDataLabel.font = UIFont.boldSystemFont(ofSize: 20)
+                noDataLabel.font = UIFont.boldSystemFont(ofSize: 15)
                 noDataLabel.textAlignment = .center
                 tableView.backgroundView = noDataLabel
                 tableView.separatorStyle = .none
