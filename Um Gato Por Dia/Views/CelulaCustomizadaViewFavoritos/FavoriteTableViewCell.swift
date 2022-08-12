@@ -15,17 +15,33 @@ class FavoriteTableViewCell: UITableViewCell {
     
     @IBOutlet weak var labelDescriptionFavTable: UILabel!
     
-    static var idCelulaFavTableView = "celulaCustomizada"
+    static var idCell = "celulaCustomizada"
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        setupCell()
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    private func setupCell() {
+        labelNameCatFavTable.font = UIFont.boldSystemFont(ofSize: 18.0)
+        labelNameCatFavTable.textColor = .darkGray
+        labelDescriptionFavTable.numberOfLines = 0
+        labelDescriptionFavTable.font = UIFont.systemFont(ofSize: 15.0)
+        imageCatFavTable.layer.cornerRadius = 55
+        imageCatFavTable.layer.masksToBounds = true
+        imageCatFavTable.contentMode = .scaleAspectFill
+    }
+    
+    func updateCell(withCatEntity model: CatEntity) {
+        labelNameCatFavTable.text = model.catName
+        labelDescriptionFavTable.text = model.catDescription
+ 
+        if let image = model.catImage {
+            let url = URL(string: image)
+            imageCatFavTable.kf.setImage(with: url, placeholder: UIImage(named: "placeHolderCat"), options: [.cacheOriginalImage], progressBlock: nil, completionHandler: nil)
+        } else {
+            imageCatFavTable.image = UIImage(named: "placeHolderCat")
+        }
     }
     
 }

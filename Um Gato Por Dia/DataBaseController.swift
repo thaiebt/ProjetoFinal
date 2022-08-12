@@ -55,5 +55,70 @@ class DataBaseController {
             }
         }
     }
+    
+    static func verifyFavorite(cat: CatsResponseModel) -> Bool {
+        let context = DataBaseController.persistentContainer.viewContext
+        do {
+            guard let catIdentifier = cat.identifier else { return false}
+            let fetchRequest = CatEntity.fetchRequest()
+            let predicate = NSPredicate(format: "catIdentifier == %@", catIdentifier)
+            fetchRequest.predicate = predicate
+            
+            let favoriteCat = try context.fetch(fetchRequest)
+            if favoriteCat.count > 0 {
+                return true
+            } else {
+                return false
+            }
+        } catch {
+            print("Error")
+            return false
+        }
+    }
+    
+    static func removeFavorite(cat: CatsResponseModel) {
+        guard let catIdentifier = cat.identifier else { return }
+        let fetchRequest = CatEntity.fetchRequest()
+        let predicate = NSPredicate(format: "catIdentifier == %@", catIdentifier)
+        fetchRequest.predicate = predicate
+
+        fetchRequest.includesPropertyValues = false
+
+        let context = DataBaseController.persistentContainer.viewContext
+
+        if let objects = try? context.fetch(fetchRequest) {
+            for object in objects {
+                context.delete(object)
+            }
+        }
+        try? context.save()
+    }
+    
+    static func addFavorites(catModel: CatsResponseModel) {
+        if let catDescription = catModel.description,
+           let catIdentifier = catModel.identifier,
+           let catImage = catModel.image?.url,
+           let catLifeSpan = catModel.lifeSpan,
+           let catName = catModel.name,
+           let catOrigin = catModel.origin,
+           let catTemperament = catModel.temperament,
+           let catWikipediaUrl = catModel.wikipediaUrl {
+            
+            let context = DataBaseController.persistentContainer.viewContext
+            
+            let cat = CatEntity(context: context)
+            
+            cat.catDescription = catDescription
+            cat.catIdentifier = catIdentifier
+            cat.catImage = catImage
+            cat.catLifeSpan = catLifeSpan
+            cat.catName = catName
+            cat.catOrigin = catOrigin
+            cat.catTemperament = catTemperament
+            cat.catWikipediaUrl = catWikipediaUrl
+            
+            DataBaseController.saveContext()
+        }
+    }
 }
 

@@ -9,31 +9,49 @@ import UIKit
 import SafariServices
 import CoreData
 
-class DetailViewControler: UIViewController {
+protocol DetailViewProtocol: AnyObject {
+    var isFavorite: Bool { get set }
+    func reloadTableView()
+}
+
+class DetailViewControler: UIViewController, DetailViewProtocol {
+    
+    private lazy var viewModel: DetailViewModel = {
+        let viewModel = DetailViewModel(withCat: catModel, view: self)
+        return viewModel
+    }()
  
-// MARK: Variáveis
-    lazy var detailTableCat: UITableView = {
-        
+    private lazy var tableView: UITableView = {
         var table = UITableView()
-        table.frame = self.view.bounds
+        table.frame = view.bounds
         table.delegate = self
         table.dataSource = self
         table.separatorStyle = .none
-        
         return table
     }()
     
     private let reuseIdentifier = "cell"
-    var touchedCat: Cat = Cat()
+    private let catModel: CatsResponseModel
     var isFavorite: Bool = false
+    
+    init(withModel model: CatsResponseModel) {
+        catModel = model
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.addSubview(detailTableCat)
-        // título da tabela:
-        self.title = touchedCat.name
-        // Verificando ao carregar quais itens estão salvos no Core Data como favoritos
-        verifyFavorite()
+        view.addSubview(tableView)
+        title = catModel.name
+        viewModel.checkFavoriteCat()
+    }
+    
+    func reloadTableView() {
+        tableView.reloadData()
     }
 }
 
@@ -47,16 +65,11 @@ extension DetailViewControler: UITableViewDataSource {
         
         // Definição da célula
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: reuseIdentifier)
-        
-        // Configuração da célula
         cell.selectionStyle = .none
-        // Configurando textos da label de título
         cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 18.0)
         cell.textLabel?.textColor = .gray
-        // Configurando textos da label de subtítulo
         cell.detailTextLabel?.font = UIFont.systemFont(ofSize: 20.0)
-        
-        // Configurando os itens que terá cada uma das celulas
+
         switch indexPath.row {
         case 0:
             return self.setImage()
@@ -83,7 +96,7 @@ extension DetailViewControler: UITableViewDataSource {
     func setImage() -> UITableViewCell {
         let cellImage = ImageViewCell()
         
-        if let urlString = touchedCat.image?.url {
+        if let urlString = catModel.image?.url {
             guard let url = URL(string: urlString) else { return UITableViewCell() }
             cellImage.setImageView(url: url)
         } else {
@@ -93,7 +106,7 @@ extension DetailViewControler: UITableViewDataSource {
     }
     
     func setName(cell: UITableViewCell) -> UITableViewCell {
-        guard let name = touchedCat.name else { return UITableViewCell() }
+        guard let name = catModel.name else { return UITableViewCell() }
         cell.textLabel?.text = "Name: "
         cell.detailTextLabel?.text = name
         
@@ -101,7 +114,7 @@ extension DetailViewControler: UITableViewDataSource {
     }
     
     func setDescription(cell: UITableViewCell) -> UITableViewCell {
-        guard let description = touchedCat.description else { return UITableViewCell() }
+        guard let description = catModel.description else { return UITableViewCell() }
         cell.textLabel?.text = "Description: "
         cell.detailTextLabel?.text = description
         cell.detailTextLabel?.numberOfLines = 0
@@ -110,7 +123,7 @@ extension DetailViewControler: UITableViewDataSource {
     }
     
     func setOrigin(cell: UITableViewCell) -> UITableViewCell {
-        guard let origin = touchedCat.origin else { return UITableViewCell() }
+        guard let origin = catModel.origin else { return UITableViewCell() }
         cell.textLabel?.text = "Origin: "
         cell.detailTextLabel?.text = origin
         
@@ -118,7 +131,7 @@ extension DetailViewControler: UITableViewDataSource {
     }
     
     func setLife_Span(cell: UITableViewCell) -> UITableViewCell {
-        guard let life_span = touchedCat.lifeSpan else { return UITableViewCell() }
+        guard let life_span = catModel.lifeSpan else { return UITableViewCell() }
         cell.textLabel?.text = "Life expectancy: "
         cell.detailTextLabel?.text = life_span
         
@@ -126,7 +139,7 @@ extension DetailViewControler: UITableViewDataSource {
     }
     
     func setTemperament(cell: UITableViewCell) -> UITableViewCell {
-        guard let temperament = touchedCat.temperament else { return UITableViewCell() }
+        guard let temperament = catModel.temperament else { return UITableViewCell() }
         cell.textLabel?.text = "Temperament: "
         cell.detailTextLabel?.text = temperament
         cell.detailTextLabel?.numberOfLines = 0
@@ -135,7 +148,7 @@ extension DetailViewControler: UITableViewDataSource {
     }
     
     func setWikipedia_Url(cell: UITableViewCell) -> UITableViewCell {
-        guard let wikipedia_url = touchedCat.wikipediaUrl else { return UITableViewCell() }
+        guard let wikipedia_url = catModel.wikipediaUrl else { return UITableViewCell() }
         cell.textLabel?.text = "Wikipedia: "
         cell.detailTextLabel?.text = "\(wikipedia_url)"
         cell.detailTextLabel?.font = UIFont.systemFont(ofSize: 15.0)
@@ -152,10 +165,18 @@ extension DetailViewControler: UITableViewDataSource {
             }
     }
     
+    func showFavoriteButton() -> UITableViewCell {
+            if isFavorite {
+                return self.setCellRemoveFavorites()
+            } else {
+                return self.setCellAddFavorites()
+            }
+    }
+    
     func setCellAddFavorites() -> UITableViewCell {
        let cell = FavTableViewCell()
         // Definindo imagem
-        cell.imageView?.image = UIImage(systemName: "heart.fill")
+        cell.imageView?.image = UIImage(systemName: "heart")
         cell.imageView?.tintColor = .purple
         // Definindo texto
         cell.textLabel?.text = "Add to favorites"
@@ -180,7 +201,7 @@ extension DetailViewControler: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Definindo seleção da linha do link para a Wikipedia
         if indexPath.row == 6 {
-            guard let wikipedia_url = touchedCat.wikipediaUrl else { return }
+            guard let wikipedia_url = catModel.wikipediaUrl else { return }
             guard let url = URL(string: wikipedia_url) else { return }
             
             let safariViewController = SFSafariViewController(url: url)
@@ -191,89 +212,15 @@ extension DetailViewControler: UITableViewDelegate {
         // Definindo seleção da linha de adicionar ou remover favoritos
         if indexPath.row == 7 {
             if isFavorite {
-                removeFavorite()
+                viewModel.removeFavoriteCat()
             } else {
-                addFavorites()
+                viewModel.addFavorite()
             }
         }
     }
+}
     
-    func verifyFavorite() {
-        
-        let context = DataBaseController.persistentContainer.viewContext
-        
-        do {
-            guard let catIdentifier = touchedCat.identifier else { return }
-            
-            let fetchRequest = CatEntity.fetchRequest()
-            
-            let predicate = NSPredicate(format: "catIdentifier == %@", catIdentifier)
-            fetchRequest.predicate = predicate
-            
-            let favoriteCat = try context.fetch(fetchRequest)
-            if favoriteCat.count > 0 {
-                isFavorite = true
-            } else {
-                isFavorite = false
-            }
-        } catch {
-            print("Error")
-        }
-    }
-
     
-    func addFavorites() {
-        if let catDescription = touchedCat.description,
-           let catIdentifier = touchedCat.identifier,
-           let catImage = touchedCat.image?.url,
-           let catLifeSpan = touchedCat.lifeSpan,
-           let catName = touchedCat.name,
-           let catOrigin = touchedCat.origin,
-           let catTemperament = touchedCat.temperament,
-           let catWikipediaUrl = touchedCat.wikipediaUrl {
-            
-            let context = DataBaseController.persistentContainer.viewContext
-            
-            let cat = CatEntity(context: context)
-            
-            cat.catDescription = catDescription
-            cat.catIdentifier = catIdentifier
-            cat.catImage = catImage
-            cat.catLifeSpan = catLifeSpan
-            cat.catName = catName
-            cat.catOrigin = catOrigin
-            cat.catTemperament = catTemperament
-            cat.catWikipediaUrl = catWikipediaUrl
-            
-            DataBaseController.saveContext()
-            
-            isFavorite = true
-            
-            self.detailTableCat.reloadData()
-        }
-    }
-    
-    func removeFavorite() {
-        guard let catIdentifier = touchedCat.identifier else { return }
-        
-        let fetchRequest = CatEntity.fetchRequest()
-        
-        let predicate = NSPredicate(format: "catIdentifier == %@", catIdentifier)
-        fetchRequest.predicate = predicate
-
-        fetchRequest.includesPropertyValues = false
-
-        let context = DataBaseController.persistentContainer.viewContext
-
-        if let objects = try? context.fetch(fetchRequest) {
-            for object in objects {
-                context.delete(object)
-            }
-        }
-        try? context.save()
-        isFavorite = false
-        self.detailTableCat.reloadData()
-    }
     
    
 //Função utilizada apenas para remover todos os itens da CatEntity em dev
@@ -292,5 +239,3 @@ extension DetailViewControler: UITableViewDelegate {
 //            // Error Handling
 //        }
 //    }
-
-}

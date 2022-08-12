@@ -7,67 +7,46 @@
 
 import Foundation
 
-class API: CatApi {
+protocol ProviderProtocol {
+    func setBreedURL() -> String
+    func makeRequest<Success: Decodable>(url: String, completion: @escaping (Result<[Success], APIError>) -> Void)
+}
+
+class Provider: ProviderProtocol {
     
-    let baseUrl = "https://api.thecatapi.com/v1/"
+    private let baseUrl = "https://api.thecatapi.com/v1/"
+    private var statusCode: Int = 0
     
     func setBreedURL() -> String {
         return ("\(baseUrl)\(EndPoints.breeds)")
     }
-      
-    func getCats(urlString: String, method: HTTPMethod, key: String, completion: @escaping (Result<[Cat], APIError>) -> Void) {
-
-        // Criando array de Cat
-        var _: [Cat] = []
-
-        // Criando request HTTP
-        // Criando config da sessão
-        let config: URLSessionConfiguration = .default
-
-        // Contruindo a sessão
-        let session: URLSession = URLSession(configuration: config)
-
-        // Criando a URL
-        guard let url: URL = URL(string: urlString) else {
-            return
-        }
-
-        // URL request
-        let urlRequest: URLRequest = URLRequest(url: url)
-
-        let task = session.dataTask(with: urlRequest) { result, urlResponse, error in
-
-            var statusCode: Int = 0
-            if let response = urlResponse as? HTTPURLResponse {
-                statusCode = response.statusCode
-                print(statusCode)
-            }
-
-            guard let data = result else {
-                completion(Result.failure(APIError.emptyData))
-                return
-            }
-
-            do {
-                // Criando um decoder
-                let decoder: JSONDecoder = JSONDecoder()
-                // Decodificar
-                let decodeData: [Cat] = try decoder.decode([Cat].self, from: data)
-
-                switch statusCode {
-                case 200:
-                    completion(Result.success(decodeData))
-                case 404:
-                    completion(Result.failure(APIError.notFound))
-                case 500:
-                    completion(Result.failure(APIError.serverError))
-                default:
-                    break
+    
+    func makeRequest<Success: Decodable>(url: String, completion: @escaping (Result<[Success], APIError>) -> Void)  {
+        if let url = URL(string: url) {
+            let config: URLSessionConfiguration = .default
+            let session: URLSession = URLSession(configuration: config)
+            
+            let task = session.dataTask(with: url) { data, response, error in
+                if let response = response as? HTTPURLResponse {
+                    self.statusCode = response.statusCode
+                    print(self.statusCode)
                 }
-            } catch {
-                completion(Result.failure(APIError.invalidData))
+                
+                if let data = data {
+                    do {
+                        let decoder: JSONDecoder = JSONDecoder()
+                        let decodeData = try decoder.decode([Success].self, from: data)
+                        
+                            completion(Result.success(decodeData))
+                        
+                    }catch {
+                    
+                            completion(Result.failure(APIError.invalidData))
+                        
+                    }
+                }
             }
+            task.resume()
         }
-        task.resume()
     }
 }

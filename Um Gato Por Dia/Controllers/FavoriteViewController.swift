@@ -8,131 +8,93 @@
 import UIKit
 import Kingfisher
 
-class FavoriteViewController: UIViewController {
+protocol FavoriteViewProtocol: AnyObject {
+    func reloadTableView()
+    var favCatList: [CatEntity] { get set }
+}
 
-    var favoriteCat: [CatEntity] = []
-    var reuseIdentifier = "favCell"
+class FavoriteViewController: UIViewController, FavoriteViewProtocol {
+
+    private lazy var viewModel: FavoriteViewModel = {
+        let viewModel = FavoriteViewModel(view: self)
+        return viewModel
+    }()
     
-    lazy var favoriteTableCat: UITableView = {
-        let favTable = UITableView()
-        favTable.frame = self.view.bounds
-        favTable.delegate = self
-        favTable.dataSource = self
-        return favTable
+    var favCatList: [CatEntity] = []
+    
+    private lazy var favoriteTableView: UITableView = {
+        let table = UITableView()
+        table.frame = self.view.bounds
+        table.delegate = self
+        table.dataSource = self
+        let nib = UINib(nibName: "FavoriteTableViewCell", bundle: nil)
+        table.register(nib, forCellReuseIdentifier: FavoriteTableViewCell.idCell)
+        return table
+    }()
+    
+    private lazy var noDataLabel: UILabel = {
+        let label: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: favoriteTableView.bounds.size.width, height: favoriteTableView.bounds.size.height))
+        label.text = "No cats saved as favorites"
+        label.textColor = .darkGray
+        label.font = UIFont.boldSystemFont(ofSize: 15)
+        label.textAlignment = .center
+        return label
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
-        view.addSubview(self.favoriteTableCat)
-        
-        let nibFavCell = UINib(nibName: "FavoriteTableViewCell", bundle: nil)
-        favoriteTableCat.register(nibFavCell, forCellReuseIdentifier: FavoriteTableViewCell.idCelulaFavTableView)
-        
-        self.title = "Favorites"
+        setupLayout()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        reloadTableViewAddFavorites()
+        viewModel.getCatsFromDataBase()
     }
     
-    // MARK: Métodos
-    
-    func reloadTableViewAddFavorites() {
-        do {
-            self.favoriteCat = try DataBaseController.persistentContainer.viewContext.fetch(CatEntity.fetchRequest())
-        } catch {
-            print("Não consegui trazer informações do banco de dados!")
-        }
-        self.favoriteTableCat.reloadData()
+    private func setupLayout() {
+        view.addSubview(favoriteTableView)
+        title = "Favorites"
     }
 
+    func reloadTableView() {
+        favoriteTableView.reloadData()
+    }
 }
 
-//MARK: Extensões
-
+//MARK: Extension
 extension FavoriteViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         var numOfSections: Int = 0
-        // Definindo número de sessões e mensagem quando o número de sessões for zero
-        if self.favoriteCat.count > 0 {
-                numOfSections = 1
-                tableView.backgroundView = nil
-            } else {
-                let noDataLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
-                noDataLabel.text = "No cats saved as favorites"
-                noDataLabel.textColor = .darkGray
-                noDataLabel.font = UIFont.boldSystemFont(ofSize: 15)
-                noDataLabel.textAlignment = .center
-                tableView.backgroundView = noDataLabel
-                tableView.separatorStyle = .none
-            }
-            return numOfSections
+        if favCatList.count > 0 {
+            numOfSections = 1
+            tableView.backgroundView = nil
+        } else {
+            tableView.backgroundView = noDataLabel
+            tableView.separatorStyle = .none
+        }
+        return numOfSections
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return self.favoriteCat.count
+        return favCatList.count
     }
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteTableViewCell.idCell, for: indexPath) as? FavoriteTableViewCell else { return UITableViewCell() }
+        let cat = favCatList[indexPath.row]
+        cell.updateCell(withCatEntity: cat)
+        cell.accessoryType = .disclosureIndicator
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteTableViewCell.idCelulaFavTableView, for: indexPath) as? FavoriteTableViewCell
-        
-        let favCat = favoriteCat[indexPath.row]
-        
-        cell?.accessoryType = .disclosureIndicator
-        
-        // Configurando label título
-        cell?.labelNameCatFavTable.text = favCat.catName
-        cell?.labelNameCatFavTable.font = UIFont.boldSystemFont(ofSize: 18.0)
-        cell?.labelNameCatFavTable.textColor = .darkGray
-        
-        // Configurando label subtítulo
-        cell?.labelDescriptionFavTable.text = favCat.catDescription
-        cell?.labelDescriptionFavTable.numberOfLines = 0
-        cell?.labelDescriptionFavTable.font = UIFont.systemFont(ofSize: 15.0)
-        
-        // Configurando imagem
-        if let image = favCat.catImage {
-            let url = URL(string: image)
-            cell?.imageCatFavTable.kf.setImage(with: url, placeholder: UIImage(named: "placeHolderCat"), options: [.cacheOriginalImage], progressBlock: nil, completionHandler: nil)
-        } else {
-            cell?.imageCatFavTable.image = UIImage(named: "placeHolderCat")
-        }
-        cell?.imageCatFavTable.layer.cornerRadius = 55
-        cell?.imageCatFavTable.layer.masksToBounds = true
-        cell?.imageCatFavTable.contentMode = .scaleAspectFill
-        
-        return cell!
+        return cell
     }
 }
 
 extension FavoriteViewController: UITableViewDelegate {
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detail = DetailViewControler()
+        let favCat = favCatList[indexPath.row]
+        let selectedCat = viewModel.bindCatModel(catEntity: favCat)
         
-        let favCatEntity = favoriteCat[indexPath.row]
-        
-        let imageCat = ImageCat()
-        imageCat.url = favCatEntity.catImage
-        
-        let newTouchedCat: Cat = Cat()
-        newTouchedCat.description = favCatEntity.catDescription
-        newTouchedCat.identifier = favCatEntity.catIdentifier
-        newTouchedCat.image = imageCat
-        newTouchedCat.lifeSpan = favCatEntity.catLifeSpan
-        newTouchedCat.name = favCatEntity.catName
-        newTouchedCat.origin = favCatEntity.catOrigin
-        newTouchedCat.temperament = favCatEntity.catTemperament
-        newTouchedCat.wikipediaUrl = favCatEntity.catWikipediaUrl
-        
-        detail.touchedCat = newTouchedCat
-        
-        self.show(detail, sender: self)
+        let controller = DetailViewControler(withModel: selectedCat)
+        navigationController?.pushViewController(controller, animated: true)
     }
 }

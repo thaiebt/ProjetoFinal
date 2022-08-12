@@ -10,184 +10,100 @@ import Kingfisher
 import SnapKit
 import AVFoundation
 
-class ViewController: UIViewController {
+protocol CatListViewProtocol: AnyObject {
+    func reloadCollectionView()
+    var catList: [CatsResponseModel] { get set }
+}
+
+class ViewController: UIViewController, CatListViewProtocol {
+
+    var catList: [CatsResponseModel] = []
     
-// MARK: Váriáveis
-    var arrayCat: [Cat] = []
-    //let api = API()
-    var api: CatApi?
-    let apiKey = "dc1f410d-5088-4bb5-bb19-a4f2852b7c27"
-    let day = "Day "
+    private lazy var viewModel: CatListViewModel = {
+        let viewModel = CatListViewModel(withProvider: Provider(), view: self)
+        return viewModel
+    }()
     
-    // Criando a ColletionView
-    lazy var catsCollectionView: UICollectionView = {
-        
+    private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        
-        let larguraCelula: CGFloat = (self.view.frame.width*0.95)/2-5
-        layout.itemSize = CGSize(width: larguraCelula, height: larguraCelula)
-        
-        // Espaço entre os elementos
+        let widthCell: CGFloat = (self.view.frame.width*0.95)/2-5
+        layout.itemSize = CGSize(width: widthCell, height: widthCell)
         layout.minimumLineSpacing = 10
         layout.minimumInteritemSpacing = 1
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        
         collectionView.showsHorizontalScrollIndicator = true
-        
         collectionView.delegate = self
         collectionView.dataSource = self
-        
+        collectionView.register(UINib(nibName: "CelulaCatsCustomizadaCollectionViewCell", bundle: nil),
+                                forCellWithReuseIdentifier: CelulaCatsCustomizadaCollectionViewCell.cellId)
         return collectionView
     }()
-    // Fazendo a injeção de dependencia dentro da classe
-    convenience init (api: CatApi) {
-        self.init()
-        self.api = api
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
-        self.view.addSubview(catsCollectionView)
-        
-        // Aplicando as constrains da CollectionView
-        makeConstrainCollectionView()
-        //Registrando celula customizada CollectionView
-        let nibCell = UINib(nibName: "CelulaCatsCustomizadaCollectionViewCell", bundle: nil)
-        catsCollectionView.register(nibCell, forCellWithReuseIdentifier: CelulaCatsCustomizadaCollectionViewCell.idCelulaCollectionView)
-        
-        self.view.backgroundColor = .white
-        self.title = "One cat a day"
-        
-        // Chamando o método de buscar os itens na API e populando o array
-        self.populaArrayCat { [weak self] result in
-            guard self != nil else { return }
-
-            switch result {
-            case .success(let cats):
-                // Variável auxiliar para salvar somente os itens que vem da API que tenham imagem
-                var auxCat: [Cat] = []
-                // salvando no array auxiliar somente os itens que venham da API que tenha imagem
-                for cat in cats {
-                    if cat.image != nil && cat.image?.url != nil {
-                        auxCat.append(cat)
-                    }
-                }
-                // Passando para o arrayCat os itens que vieram com imagem da API
-                self?.arrayCat = auxCat
-                DispatchQueue.main.async {
-                    self?.catsCollectionView.reloadData()
-                }
-            case .failure(let error):
-                switch error {
-                case .emptyReponse:
-                    self?.showUserAlert(message: "The array is empty")
-                case .emptyData:
-                    self?.showUserAlert(message: "No internet access")
-                default:
-                    break;
-                }
-            }
-        }
+        setupView()
+        viewModel.fillCatList()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         self.createRightButton()
     }
     
-    // MARK: Métodos
+    func reloadCollectionView() {
+        collectionView.reloadData()
+    }
     
-    // Criando a função que adiciona constrains na CollectionView
+    private func setupView() {
+        view.backgroundColor = .white
+        title = "One cat a day"
+        
+        view.addSubview(collectionView)
+        makeConstrainCollectionView()
+    }
+    
     fileprivate func makeConstrainCollectionView() {
         NSLayoutConstraint.activate([
-            catsCollectionView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            catsCollectionView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.95),
-            catsCollectionView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            catsCollectionView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            collectionView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.95),
+            collectionView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
 
-    //Criando a função que busca na API usando completion
-    func populaArrayCat(completion: @escaping (Result<[Cat], APIError>) -> Void) {
-        guard let mApi = self.api else { return }
-        
-        mApi.getCats(urlString: mApi.setBreedURL(), method: .GET, key: apiKey) { [weak self] result in
-            guard self != nil else {return}
-            
-            switch result {
-            case .success(let cats):
-                completion(Result.success(cats))
-            case .failure(let error):
-                completion(Result.failure(error))
-            }
-        }
-    }
-    // Criando a função de alertas
     func showUserAlert(message: String) {
         DispatchQueue.main.async {
             let alert = UIAlertController(title: "Attention", message: message, preferredStyle: .alert)
-            
-            let buttonRedoCallApi = UIAlertAction(title: "Try again", style: .default) { _ in
-                self.populaArrayCat { [weak self] result in
-                    guard self != nil else { return }
-
-                    switch result {
-                    case .success(let cats):
-                        var auxCat: [Cat] = []
-                        
-                        for cat in cats {
-                            if cat.image != nil {
-                                auxCat.append(cat)
-                            }
-                        }
-                        self?.arrayCat = auxCat
-                        DispatchQueue.main.async {
-                            self?.catsCollectionView.reloadData()
-                        }
-                    case .failure(let error):
-                        switch error {
-                        case .emptyReponse:
-                            self?.showUserAlert(message: "The array is empty")
-                        case .emptyData:
-                            self?.showUserAlert(message: "No internet access")
-                        default:
-                            break;
-                        }
-                    }
-                }
+            let tryAgain = UIAlertAction(title: "Try again", style: .default) { [weak self] _ in
+                self?.viewModel.fillCatList()
             }
-            
-            let buttonGoToFavorite = UIAlertAction(title: "Go to favorites", style: .default) { _ in
+            let goToFavoritesButton = UIAlertAction(title: "Go to favorites", style: .default) { [weak self] _ in
                 let favorites = FavoriteViewController()
-                self.navigationController?.pushViewController(favorites, animated: true)
+                self?.navigationController?.pushViewController(favorites, animated: true)
             }
-            
-            let buttonCancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-            
-            alert.addAction(buttonRedoCallApi)
-            alert.addAction(buttonGoToFavorite)
-            alert.addAction(buttonCancel)
+            let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+    
+            alert.addAction(tryAgain)
+            alert.addAction(goToFavoritesButton)
+            alert.addAction(cancelButton)
             
             self.present(alert, animated: true, completion: nil)
         }
     }
-    //Função para criar botão de acesso aos favoritos
+ 
     func createRightButton() {
         let heartImage = UIImage(systemName: "heart.fill")
         let rightButton = UIBarButtonItem(image: heartImage, style: UIBarButtonItem.Style.plain, target: self, action: #selector(getFavorite))
         rightButton.tintColor = .systemPurple
         self.navigationItem.rightBarButtonItem = rightButton
     }
-    // Definindo a ação do right button
+
     @objc func getFavorite() {
-        let favViewController = FavoriteViewController()
-        self.show(favViewController, sender: nil)
+        let controller = FavoriteViewController()
+        navigationController?.pushViewController(controller, animated: true)
     }
 }
 
@@ -198,51 +114,22 @@ extension ViewController: UICollectionViewDataSource {
     }
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.arrayCat.count
+        return catList.count
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CelulaCatsCustomizadaCollectionViewCell.idCelulaCollectionView, for: indexPath) as? CelulaCatsCustomizadaCollectionViewCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CelulaCatsCustomizadaCollectionViewCell.cellId, for: indexPath) as? CelulaCatsCustomizadaCollectionViewCell else { return UICollectionViewCell() }
         
-        // Configuração da imagem usando o Framework KingFisher
-        if let image = self.arrayCat[indexPath.row].image?.url {
-            let url = URL(string: image)
-            cell?.imageCatCollectionView.kf.setImage(with: url,
-                                                     placeholder: UIImage(named: "placeHolderCat"),
-                                                     options: [
-                                                        .transition(ImageTransition.fade(0.5)),
-                                                        .cacheOriginalImage
-                                                        ],
-                                                     progressBlock: nil ,
-                                                     completionHandler: nil)
-       }else {
-            cell?.imageCatCollectionView.image = UIImage(named: "placeHolderCat")
-        }
+        cell.updateCell(withModel: catList[indexPath.row], index: indexPath.row)
         
-        cell?.imageCatCollectionView.contentMode = .scaleAspectFill
-        cell?.layer.cornerRadius = 15
-        
-        // Configurando a label com o nome do gato
-        cell?.nameCatCollectionView.text = self.arrayCat[indexPath.row].name
-        cell?.nameCatCollectionView.textColor = .white
-        cell?.nameCatCollectionView.textAlignment = .center
-        
-        // Configurando a label com o número do dia
-        cell?.labelDay.text = ("Day \(indexPath.row + 1)")
-        cell?.labelDay.textColor = .white
-        cell?.labelDay.textAlignment = .center
-        cell?.labelDay.font = UIFont.boldSystemFont(ofSize: 25.0)
-        
-        return cell!
+        return cell
     }
 }
 
 extension ViewController: UICollectionViewDelegate {
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        let detail = DetailViewControler()
-        detail.touchedCat = self.arrayCat[indexPath.row]
-        self.show(detail, sender: nil)
+        let cat = catList[indexPath.row]
+        let controller = DetailViewControler(withModel: cat)
+        navigationController?.pushViewController(controller, animated: true)
     }
 }

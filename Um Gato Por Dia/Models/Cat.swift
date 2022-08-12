@@ -7,15 +7,15 @@
 
 import Foundation
 
-class Cat: Codable {
-    var description: String?
-    var identifier: String?
-    var image: ImageCat?
-    var lifeSpan: String?
-    var name: String?
-    var origin: String?
-    var temperament: String?
-    var wikipediaUrl: String?
+struct CatsResponseModel: Decodable {
+    let description: String?
+    let identifier: String?
+    let image: ImageCat?
+    let lifeSpan: String?
+    let name: String?
+    let origin: String?
+    let temperament: String?
+    let wikipediaUrl: String?
     
     enum CodingKeys: String, CodingKey {
         case description
@@ -27,24 +27,8 @@ class Cat: Codable {
         case temperament
         case wikipediaUrl = "wikipedia_url"
     }
-    
-    init(description: String? = nil,
-        identifier: String? = nil,
-        image: ImageCat? = nil,
-        lifeSpan: String? = nil,
-        name: String? = nil,
-        origin: String? = nil,
-        temperament: String? = nil,
-        wikipediaUrl: String? = nil
-    
-    ) {
-        self.description = description
-        self.identifier = identifier
-        self.image = image
-        self.lifeSpan = lifeSpan
-        self.name = name
-        self.origin = origin
-        self.temperament = temperament
-        self.wikipediaUrl = wikipediaUrl
-    }
+}
+
+struct ImageCat: Decodable {
+    let url: String?
 }
