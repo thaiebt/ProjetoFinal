@@ -81,7 +81,6 @@ class CatListCollectionViewCell: UICollectionViewCell {
             nameLabel.leftAnchor.constraint(equalTo: dayLabel.leftAnchor),
             nameLabel.rightAnchor.constraint(equalTo: dayLabel.rightAnchor)
         ])
-        
     }
 
     func updateCell(withModel model: CatsResponseModel, index: Int) {
@@ -95,9 +94,9 @@ class CatListCollectionViewCell: UICollectionViewCell {
                                 ],
                              progressBlock: nil ,
                              completionHandler: nil)
-       }else {
+       } else {
             image.image = UIImage(named: "placeHolderCat")
-        }
+       }
     
         nameLabel.text = model.name
         dayLabel.text = ("Day \(index + 1)")

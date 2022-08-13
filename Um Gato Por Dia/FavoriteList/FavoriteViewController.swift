@@ -27,8 +27,7 @@ class FavoriteViewController: UIViewController, FavoriteViewProtocol {
         table.frame = self.view.bounds
         table.delegate = self
         table.dataSource = self
-        let nib = UINib(nibName: "FavoriteTableViewCell", bundle: nil)
-        table.register(nib, forCellReuseIdentifier: FavoriteTableViewCell.idCell)
+        table.register(FavoriteTableViewCell.self, forCellReuseIdentifier: FavoriteTableViewCell.idCell)
         return table
     }()
     

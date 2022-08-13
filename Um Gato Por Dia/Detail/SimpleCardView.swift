@@ -42,7 +42,7 @@ class SimpleCardView: UIControl {
     private lazy var contentLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont.systemFont(ofSize: 14)
         label.numberOfLines = 0
         label.textColor = .black
         return label
