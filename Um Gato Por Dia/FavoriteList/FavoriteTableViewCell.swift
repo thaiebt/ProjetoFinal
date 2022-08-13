@@ -43,9 +43,8 @@ class FavoriteTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate([
             image.heightAnchor.constraint(equalToConstant: 110),
             image.widthAnchor.constraint(equalToConstant: 110),
-            image.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             image.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16),
-            image.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
+            image.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             
             nameAndPreviewView.topAnchor.constraint(equalTo: image.topAnchor),
             nameAndPreviewView.leftAnchor.constraint(equalTo: image.rightAnchor, constant: 8),

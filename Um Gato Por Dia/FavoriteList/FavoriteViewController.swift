@@ -96,4 +96,8 @@ extension FavoriteViewController: UITableViewDelegate {
         let controller = DetailViewControler(withModel: selectedCat)
         navigationController?.pushViewController(controller, animated: true)
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 126
+    }
 }
