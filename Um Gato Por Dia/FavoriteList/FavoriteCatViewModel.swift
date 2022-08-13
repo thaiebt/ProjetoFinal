@@ -17,14 +17,14 @@ class FavoriteViewModel {
     }
     
     func bindCatModel(catEntity: CatEntity) -> CatsResponseModel {
-        return CatsResponseModel(description: catEntity.description,
-                                                     identifier: catEntity.catIdentifier,
-                                                     image: ImageCat(url: catEntity.catWikipediaUrl),
-                                                     lifeSpan: catEntity.catLifeSpan,
-                                                     name: catEntity.catName,
-                                                     origin: catEntity.catOrigin,
-                                                     temperament: catEntity.catTemperament,
-                                                     wikipediaUrl: catEntity.catWikipediaUrl)
+        return CatsResponseModel(description: catEntity.catDescription,
+                                 identifier: catEntity.catIdentifier,
+                                 image: ImageCat(url: catEntity.catImage),
+                                 lifeSpan: catEntity.catLifeSpan,
+                                 name: catEntity.catName,
+                                 origin: catEntity.catOrigin,
+                                 temperament: catEntity.catTemperament,
+                                 wikipediaUrl: catEntity.catWikipediaUrl)
     }
     
     func getCatsFromDataBase()  {

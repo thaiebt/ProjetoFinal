@@ -26,7 +26,7 @@ class SimpleCardView: UIControl {
         stack.distribution = .fill
         stack.alignment = .top
         stack.isUserInteractionEnabled = false
-        stack.spacing = 8
+        stack.spacing = 3
         return stack
     }()
     

@@ -37,8 +37,7 @@ class ViewController: UIViewController, CatListViewProtocol {
         collectionView.showsHorizontalScrollIndicator = true
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.register(UINib(nibName: "CelulaCatsCustomizadaCollectionViewCell", bundle: nil),
-                                forCellWithReuseIdentifier: CelulaCatsCustomizadaCollectionViewCell.cellId)
+        collectionView.register(CatListCollectionViewCell.self, forCellWithReuseIdentifier: CatListCollectionViewCell.cellId)
         return collectionView
     }()
     
@@ -116,7 +115,7 @@ extension ViewController: UICollectionViewDataSource {
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CelulaCatsCustomizadaCollectionViewCell.cellId, for: indexPath) as? CelulaCatsCustomizadaCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CatListCollectionViewCell.cellId, for: indexPath) as? CatListCollectionViewCell else { return UICollectionViewCell() }
         
         cell.updateCell(withModel: catList[indexPath.row], index: indexPath.row)
         

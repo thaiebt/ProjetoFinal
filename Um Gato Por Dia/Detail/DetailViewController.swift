@@ -36,6 +36,7 @@ class DetailViewControler: UIViewController, DetailViewProtocol {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.contentMode = .scaleAspectFill
+        image.clipsToBounds = true
         return image
     }()
     
@@ -134,7 +135,7 @@ class DetailViewControler: UIViewController, DetailViewProtocol {
             mainStackView.topAnchor.constraint(equalTo: catImage.bottomAnchor, constant: 16),
             mainStackView.leftAnchor.constraint(equalTo: scrollView.leftAnchor),
             mainStackView.rightAnchor.constraint(equalTo: scrollView.rightAnchor),
-            mainStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 16),
+            mainStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -16),
             mainStackView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             
             
