@@ -120,5 +120,17 @@ class DataBaseController {
             DataBaseController.saveContext()
         }
     }
+    
+    static func removeAllFavorites() {
+        let context = DataBaseController.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "CatEntity")
+        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        do {
+            try context.execute(batchDeleteRequest)
+
+        } catch {
+            print("error")
+        }
+    }
 }
 

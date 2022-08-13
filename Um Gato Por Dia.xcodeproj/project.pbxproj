@@ -10,6 +10,9 @@
 		2FDF91CE28A6C3ED0099AD42 /* CatListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDF91CD28A6C3ED0099AD42 /* CatListViewModel.swift */; };
 		2FDF91D028A6C74C0099AD42 /* FavoriteCatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDF91CF28A6C74C0099AD42 /* FavoriteCatViewModel.swift */; };
 		2FDF91D228A6CA760099AD42 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDF91D128A6CA760099AD42 /* DetailViewModel.swift */; };
+		2FDF91D428A713920099AD42 /* SimpleCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDF91D328A713920099AD42 /* SimpleCardView.swift */; };
+		2FDF91D628A72D9A0099AD42 /* AddFavView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDF91D528A72D9A0099AD42 /* AddFavView.swift */; };
+		2FDF91D828A73D680099AD42 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDF91D728A73D680099AD42 /* Extensions.swift */; };
 		4918A5B0272C52F500C05A60 /* UmGatoPorDia.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4920F0DE2729E4740098C336 /* UmGatoPorDia.xcdatamodeld */; };
 		491D9C78272451B300E244BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 491D9C77272451B300E244BB /* LaunchScreen.storyboard */; };
 		491D9C812724536B00E244BB /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 491D9C802724536B00E244BB /* SnapKit */; };
@@ -17,7 +20,6 @@
 		4920F0E22729EF950098C336 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4920F0E12729EF950098C336 /* FavoriteViewController.swift */; };
 		4920F0E42729F4D90098C336 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4920F0E32729F4D90098C336 /* APIError.swift */; };
 		49535C382726B98100692FEA /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49535C372726B98100692FEA /* DetailViewController.swift */; };
-		495A3ADE2728521800811B16 /* ImageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495A3ADD2728521800811B16 /* ImageViewCell.swift */; };
 		4968B1322721979A00629574 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4968B1312721979A00629574 /* AppDelegate.swift */; };
 		4968B1362721979A00629574 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4968B1352721979A00629574 /* ViewController.swift */; };
 		4968B13B2721979B00629574 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4968B13A2721979B00629574 /* Assets.xcassets */; };
@@ -33,8 +35,6 @@
 		49877A60272AC86700FD64B7 /* FavoriteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49877A5E272AC86700FD64B7 /* FavoriteTableViewCell.swift */; };
 		49877A61272AC86700FD64B7 /* FavoriteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49877A5F272AC86700FD64B7 /* FavoriteTableViewCell.xib */; };
 		49877A63272AD35900FD64B7 /* DataBaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49877A62272AD35900FD64B7 /* DataBaseController.swift */; };
-		49877AB4272B20F600FD64B7 /* FavTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49877AB2272B20F600FD64B7 /* FavTableViewCell.swift */; };
-		49877AB5272B20F600FD64B7 /* FavTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49877AB3272B20F600FD64B7 /* FavTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,12 +51,14 @@
 		2FDF91CD28A6C3ED0099AD42 /* CatListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatListViewModel.swift; sourceTree = "<group>"; };
 		2FDF91CF28A6C74C0099AD42 /* FavoriteCatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCatViewModel.swift; sourceTree = "<group>"; };
 		2FDF91D128A6CA760099AD42 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		2FDF91D328A713920099AD42 /* SimpleCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleCardView.swift; sourceTree = "<group>"; };
+		2FDF91D528A72D9A0099AD42 /* AddFavView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFavView.swift; sourceTree = "<group>"; };
+		2FDF91D728A73D680099AD42 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		491D9C77272451B300E244BB /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4920F0DF2729E4740098C336 /* UmGatoPorDia.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UmGatoPorDia.xcdatamodel; sourceTree = "<group>"; };
 		4920F0E12729EF950098C336 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		4920F0E32729F4D90098C336 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		49535C372726B98100692FEA /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		495A3ADD2728521800811B16 /* ImageViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewCell.swift; sourceTree = "<group>"; };
 		4968B12E2721979A00629574 /* Um Gato Por Dia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Um Gato Por Dia.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4968B1312721979A00629574 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4968B1352721979A00629574 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -75,8 +77,6 @@
 		49877A5E272AC86700FD64B7 /* FavoriteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewCell.swift; sourceTree = "<group>"; };
 		49877A5F272AC86700FD64B7 /* FavoriteTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteTableViewCell.xib; sourceTree = "<group>"; };
 		49877A62272AD35900FD64B7 /* DataBaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseController.swift; sourceTree = "<group>"; };
-		49877AB2272B20F600FD64B7 /* FavTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavTableViewCell.swift; sourceTree = "<group>"; };
-		49877AB3272B20F600FD64B7 /* FavTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +117,8 @@
 				4968B1352721979A00629574 /* ViewController.swift */,
 				2FDF91CD28A6C3ED0099AD42 /* CatListViewModel.swift */,
 				49535C372726B98100692FEA /* DetailViewController.swift */,
+				2FDF91D528A72D9A0099AD42 /* AddFavView.swift */,
+				2FDF91D328A713920099AD42 /* SimpleCardView.swift */,
 				2FDF91D128A6CA760099AD42 /* DetailViewModel.swift */,
 				4920F0E12729EF950098C336 /* FavoriteViewController.swift */,
 				2FDF91CF28A6C74C0099AD42 /* FavoriteCatViewModel.swift */,
@@ -129,7 +131,6 @@
 			children = (
 				49877A5D272AC7B600FD64B7 /* CelulaCustomizadaViewFavoritos */,
 				4968B1452721BB6800629574 /* CelulaCustomizadaViewPrincipal */,
-				49877AB6272B488500FD64B7 /* CelulasCustomizadasDetailView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -164,6 +165,7 @@
 				4968B13A2721979B00629574 /* Assets.xcassets */,
 				4968B13F2721979B00629574 /* Info.plist */,
 				4920F0DE2729E4740098C336 /* UmGatoPorDia.xcdatamodeld */,
+				2FDF91D728A73D680099AD42 /* Extensions.swift */,
 			);
 			path = "Um Gato Por Dia";
 			sourceTree = "<group>";
@@ -202,16 +204,6 @@
 				49877A5F272AC86700FD64B7 /* FavoriteTableViewCell.xib */,
 			);
 			path = CelulaCustomizadaViewFavoritos;
-			sourceTree = "<group>";
-		};
-		49877AB6272B488500FD64B7 /* CelulasCustomizadasDetailView */ = {
-			isa = PBXGroup;
-			children = (
-				495A3ADD2728521800811B16 /* ImageViewCell.swift */,
-				49877AB2272B20F600FD64B7 /* FavTableViewCell.swift */,
-				49877AB3272B20F600FD64B7 /* FavTableViewCell.xib */,
-			);
-			path = CelulasCustomizadasDetailView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -305,7 +297,6 @@
 			files = (
 				491D9C78272451B300E244BB /* LaunchScreen.storyboard in Resources */,
 				49877A61272AC86700FD64B7 /* FavoriteTableViewCell.xib in Resources */,
-				49877AB5272B20F600FD64B7 /* FavTableViewCell.xib in Resources */,
 				4968B1492721CA6400629574 /* CelulaCatsCustomizadaCollectionViewCell.xib in Resources */,
 				4968B13B2721979B00629574 /* Assets.xcassets in Resources */,
 			);
@@ -332,14 +323,15 @@
 				4968B1482721CA6400629574 /* CelulaCatsCustomizadaCollectionViewCell.swift in Sources */,
 				49877A60272AC86700FD64B7 /* FavoriteTableViewCell.swift in Sources */,
 				4968B1362721979A00629574 /* ViewController.swift in Sources */,
+				2FDF91D828A73D680099AD42 /* Extensions.swift in Sources */,
 				4968B14F2721F21900629574 /* API.swift in Sources */,
 				4968B1532721FEE800629574 /* EndPoints.swift in Sources */,
+				2FDF91D428A713920099AD42 /* SimpleCardView.swift in Sources */,
 				4968B1322721979A00629574 /* AppDelegate.swift in Sources */,
 				49877A63272AD35900FD64B7 /* DataBaseController.swift in Sources */,
-				49877AB4272B20F600FD64B7 /* FavTableViewCell.swift in Sources */,
 				2FDF91D028A6C74C0099AD42 /* FavoriteCatViewModel.swift in Sources */,
 				2FDF91D228A6CA760099AD42 /* DetailViewModel.swift in Sources */,
-				495A3ADE2728521800811B16 /* ImageViewCell.swift in Sources */,
+				2FDF91D628A72D9A0099AD42 /* AddFavView.swift in Sources */,
 				4918A5B0272C52F500C05A60 /* UmGatoPorDia.xcdatamodeld in Sources */,
 				4968B1512721F42700629574 /* HTTPMethod.swift in Sources */,
 				4920F0E42729F4D90098C336 /* APIError.swift in Sources */,

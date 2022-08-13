@@ -75,23 +75,21 @@ class ViewController: UIViewController, CatListViewProtocol {
     }
 
     func showUserAlert(message: String) {
-        DispatchQueue.main.async {
-            let alert = UIAlertController(title: "Attention", message: message, preferredStyle: .alert)
-            let tryAgain = UIAlertAction(title: "Try again", style: .default) { [weak self] _ in
-                self?.viewModel.fillCatList()
-            }
-            let goToFavoritesButton = UIAlertAction(title: "Go to favorites", style: .default) { [weak self] _ in
-                let favorites = FavoriteViewController()
-                self?.navigationController?.pushViewController(favorites, animated: true)
-            }
-            let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-    
-            alert.addAction(tryAgain)
-            alert.addAction(goToFavoritesButton)
-            alert.addAction(cancelButton)
-            
-            self.present(alert, animated: true, completion: nil)
+        let alert = UIAlertController(title: "Attention", message: message, preferredStyle: .alert)
+        let tryAgain = UIAlertAction(title: "Try again", style: .default) { [weak self] _ in
+            self?.viewModel.fillCatList()
         }
+        let goToFavoritesButton = UIAlertAction(title: "Go to favorites", style: .default) { [weak self] _ in
+            let favorites = FavoriteViewController()
+            self?.navigationController?.pushViewController(favorites, animated: true)
+        }
+        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+
+        alert.addAction(tryAgain)
+        alert.addAction(goToFavoritesButton)
+        alert.addAction(cancelButton)
+        
+        self.present(alert, animated: true, completion: nil)
     }
  
     func createRightButton() {

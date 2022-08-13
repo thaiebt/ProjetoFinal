@@ -18,18 +18,18 @@ class DetailViewModel {
     
     func checkFavoriteCat() {
         view?.isFavorite = DataBaseController.verifyFavorite(cat: cat)
-        view?.reloadTableView()
+        view?.updateFavoriteView()
     }
     
     func removeFavoriteCat() {
         DataBaseController.removeFavorite(cat: cat)
         view?.isFavorite = false
-        view?.reloadTableView()
+        view?.updateFavoriteView()
     }
     
     func addFavorite() {
         DataBaseController.addFavorites(catModel: cat)
         view?.isFavorite = true
-        view?.reloadTableView()
+        view?.updateFavoriteView()
     }
 }

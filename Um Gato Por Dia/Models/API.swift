@@ -36,13 +36,13 @@ class Provider: ProviderProtocol {
                     do {
                         let decoder: JSONDecoder = JSONDecoder()
                         let decodeData = try decoder.decode([Success].self, from: data)
-                        
+                        DispatchQueue.main.async {
                             completion(Result.success(decodeData))
-                        
+                        }
                     }catch {
-                    
+                        DispatchQueue.main.async {
                             completion(Result.failure(APIError.invalidData))
-                        
+                        }
                     }
                 }
             }
